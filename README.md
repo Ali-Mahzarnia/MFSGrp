@@ -3,7 +3,7 @@ This package runs the Group Elastic Net (including lasso, ridge, elastic net, an
 
 ## Installation:
   ## First install [fGMD](https://github.com/Ali-Mahzarnia/fGMD):
-You can install `fGMD` from [GitHub](https://github.com/Ali-Mahzarnia/fGMD) with the R code:
+You can install `fGMD` from [GitHub](https://github.com/Ali-Mahzarnia/fGMD) with the R command:
 ```R
 install.packages("https://github.com/Ali-Mahzarnia/fGMD/raw/master/fGMD_1.0.tar.gz",  repos = NULL, type="source")
 ```
@@ -15,9 +15,11 @@ install.packages("https://github.com/Ali-Mahzarnia/MFSGrp/raw/main/MFSGrp_1.0.ta
 ```
 
 ## Manual and Example:
-After installations you can pull up the manual that includes a simulations example by running the following line and clicking on MFSGrp::MFSGrp	in the help pages:
+After installations you can pull up the manual that includes a simulations example by the following R command:
 ```R
 ??MFSGrp
 ```
+Click on MFSGrp::MFSGrp	uynder the help pages for the manual.
+
 ## Main refrence
 Ali Mahzarnia, Jun Song. "Multivariate functional covariate selection", Submitted in March 2021.
