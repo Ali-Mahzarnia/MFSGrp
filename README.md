@@ -15,7 +15,7 @@ install.packages("https://github.com/Ali-Mahzarnia/MFSGrp/raw/main/MFSGrp_1.0.ta
 ```
 
 ## Manual and Example:
-After installations you can pull up the manual that includes a simulations example:
+After installations you can pull up the manual that includes a simulations example by running the following line and clicking on MFSGrp::MFSGrp	in the help pages:
 ```R
 ??MFSGrp
 ```
