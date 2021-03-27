@@ -8,7 +8,7 @@ You can install `fGMD` from [GitHub](https://github.com/Ali-Mahzarnia/fGMD) with
 install.packages("https://github.com/Ali-Mahzarnia/fGMD/raw/master/fGMD_1.0.tar.gz",  repos = NULL, type="source")
 ```
 
-## Then install MFSGrp:
+## Then install [MFSGrp](https://github.com/Ali-Mahzarnia/MFSGrp):
 You can install `MFSGrp` from [GitHub](https://github.com/Ali-Mahzarnia/MFSGrp) with the R code:
 ```R
 install.packages("https://github.com/Ali-Mahzarnia/MFSGrp/raw/main/MFSGrp_1.0.tar.gz",  repos = NULL, type="source")
