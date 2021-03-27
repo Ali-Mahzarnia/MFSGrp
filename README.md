@@ -19,4 +19,5 @@ After installations you can pull up the manual that includes a simulations examp
 ```R
 ??MFSGrp
 ```
-
+## Main refrence
+Ali Mahzarnia, Jun Song. "Multivariate functional covariate selection", Submitted in March 2021.
