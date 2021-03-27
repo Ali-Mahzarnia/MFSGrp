@@ -1,8 +1,16 @@
 # MFSGrp
 This package runs the Group Elastic Net (including lasso, ridge, elastic net, and ordinary least square) regression with scalar response values, and observed functional covariates. In addition, it penalizes the curvature of the output by implementing a penalty on the second derivative of the estimated coefficient curves. A part of this package uses the [fGMD](https://github.com/Ali-Mahzarnia/fGMD) package that is created exclusively for this package. The [fGMD](https://github.com/Ali-Mahzarnia/fGMD) package is a heavily modified version of the [gglasso](https://github.com/cran/gglasso). The features added to the original package: mixing parameter alpha and its net search cross validation, curvature penalizing for functional regression and its net search cross-validations, optimized Fortran core function to speed up the curvature penalization updates, progress reports and time estimations. In order to have this package work first install [fGMD](https://github.com/Ali-Mahzarnia/fGMD). The [fGMD](https://github.com/Ali-Mahzarnia/fGMD) package does not work independently from this package and it does not interfere with the functions of the [gglasso](https://github.com/cran/gglasso) package due to slight name differences.
 
+
 ## Installation:
-  ## First install [fGMD](https://github.com/Ali-Mahzarnia/fGMD):
+## Dependenceies:
+In order to have a successful installation make sure you have all of the required dependecies installed on R. Inlcuidng:  
+[Rcpp (>= 1.0.6)](https://cran.r-project.org/web/packages/Rcpp/index.html) ```R install.packages("Rcpp") ```  
+[RcppArmadillo (>= 0.10.2.2.0)](https://cran.r-project.org/web/packages/RcppArmadillo/index.html) ```install.packages("RcppArmadillo")```   
+[fda (>= 5.1.9)](https://cran.r-project.org/web/packages/fda/index.html) ```install.packages("fda")```   
+[Matrix (>=1.3-2)](https://cran.r-project.org/web/packages/Matrix/index.html) ```install.packages("Matrix")```   
+
+## First install [fGMD](https://github.com/Ali-Mahzarnia/fGMD):
 You can install `fGMD` from [GitHub](https://github.com/Ali-Mahzarnia/fGMD) with the R command:
 ```R
 install.packages("https://github.com/Ali-Mahzarnia/fGMD/raw/master/fGMD_1.0.tar.gz",  repos = NULL, type="source")
