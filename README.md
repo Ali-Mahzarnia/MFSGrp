@@ -19,7 +19,7 @@ After installations you can pull up the manual that includes a simulations examp
 ```R
 ??MFSGrp
 ```
-Click on MFSGrp::MFSGrp	uynder the help pages for the manual.
+Click on MFSGrp::MFSGrp	under the help pages for the manual.
 
 ## Main refrence
 Ali Mahzarnia, Jun Song. "Multivariate functional covariate selection", Submitted in March 2021.
