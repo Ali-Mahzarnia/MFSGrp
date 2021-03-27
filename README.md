@@ -10,13 +10,13 @@ In order to have a successful installation make sure you have all of the require
 [fda (>= 5.1.9)](https://cran.r-project.org/web/packages/fda/index.html) ```install.packages("fda")```   
 [Matrix (>=1.3-2)](https://cran.r-project.org/web/packages/Matrix/index.html) ```install.packages("Matrix")```   
 
-## First install [fGMD](https://github.com/Ali-Mahzarnia/fGMD):
+## Install [fGMD](https://github.com/Ali-Mahzarnia/fGMD):
 You can install `fGMD` from [GitHub](https://github.com/Ali-Mahzarnia/fGMD) with the R command:
 ```R
 install.packages("https://github.com/Ali-Mahzarnia/fGMD/raw/master/fGMD_1.0.tar.gz",  repos = NULL, type="source")
 ```
 
-## Then install [MFSGrp](https://github.com/Ali-Mahzarnia/MFSGrp):
+## Install [MFSGrp](https://github.com/Ali-Mahzarnia/MFSGrp):
 You can install `MFSGrp` from [GitHub](https://github.com/Ali-Mahzarnia/MFSGrp) with the R code:
 ```R
 install.packages("https://github.com/Ali-Mahzarnia/MFSGrp/raw/main/MFSGrp_1.0.tar.gz",  repos = NULL, type="source")
