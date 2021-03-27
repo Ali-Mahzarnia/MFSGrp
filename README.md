@@ -14,8 +14,8 @@ You can install `MFSGrp` from [GitHub](https://github.com/Ali-Mahzarnia/MFSGrp) 
 install.packages("https://github.com/Ali-Mahzarnia/MFSGrp/raw/main/MFSGrp_1.0.tar.gz",  repos = NULL, type="source")
 ```
 
-## Manual and examples:
-After installations you can pull up the manual that includes a simulations example
+## Manual and Example:
+After installations you can pull up the manual that includes a simulations example:
 ```R
 ??MFSGrp
 ```
