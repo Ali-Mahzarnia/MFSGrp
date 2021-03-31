@@ -1,7 +1,7 @@
 # MFSGrp
 This R package runs the Group Elastic Net (including lasso, ridge, elastic net, and ordinary least square) regression with scalar response values, and observed functional covariates. In addition, it penalizes the curvature of the output by implementing a penalty on the second derivative of the estimated coefficient curves. A part of this package uses the [fGMD](https://github.com/Ali-Mahzarnia/fGMD) package that is created exclusively for this package. The [fGMD](https://github.com/Ali-Mahzarnia/fGMD) package is a heavily modified version of the [gglasso](https://github.com/cran/gglasso). The features added to the original package: mixing parameter alpha and its net search cross-validation, curvature penalizing for functional regression and its net search cross-validations, optimized Fortran core function to speed up the curvature penalization updates, progress reports and time estimations. In order to have this package work first install [fGMD](https://github.com/Ali-Mahzarnia/fGMD) as instructed below. The [fGMD](https://github.com/Ali-Mahzarnia/fGMD) package does not work independently from this package and it does not interfere with the functions of the [gglasso](https://github.com/cran/gglasso) package due to slight name differences.
 
-# Installation:
+# Installation
 ## 1-Dependencies:
 In order to have a successful installation make sure you have all of the required dependencies installed on R. Including:  
 [Rcpp (>= 1.0.6)](https://cran.r-project.org/web/packages/Rcpp/index.html) ```install.packages("Rcpp") ```  
@@ -24,9 +24,9 @@ After installations you can pull up the manual that includes a simulation exampl
 Click on `MFSGrp::MFSGrp` under the help pages for the manual. If the manual cannot be pulled up first try ```.rs.restartR()``` then try ```??MFSGrp```.   
 
 
-# Alternative Instalation Methods:
-## 1- Development Version 
-You can install development version of `MFSGrp` and `fGMD` via [pacman](https://cran.r-project.org/web/packages/pacman/index.html) with the R command:
+# Alternative Instalation Methods
+## 1- Development Version: 
+This method most likely install the required dependencies automatically. You can install development version of `MFSGrp` and `fGMD` via [pacman](https://cran.r-project.org/web/packages/pacman/index.html) with the R command:
 ``` R  
 install.packages("pacman")  
 pacman::p_install_gh("Ali-Mahzarnia/fGMD")
