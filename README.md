@@ -21,9 +21,10 @@ install.packages("https://github.com/Ali-Mahzarnia/MFSGrp/archive/refs/heads/mai
 ```
 ## Manual and Example:
 After installations you can pull up the manual that includes a simulation example by the following R command: ```??MFSGrp```.
-Click on `MFSGrp::MFSGrp` under the help pages for the manual. If the manual cannot be pulled up first try ```.rs.restartR()``` then try ```??MFSGrp```.
+Click on `MFSGrp::MFSGrp` under the help pages for the manual. If the manual cannot be pulled up first try ```.rs.restartR()``` then try ```??MFSGrp```.   
 
-## Alternative instalation methods:
+
+## Alternative Instalation Methods:
 # 1- Development Version 
 You can install development version of `MFSGrp` and `fGMD` via [pacman](https://cran.r-project.org/web/packages/pacman/index.html) with the R command:
 ``` R  
@@ -31,7 +32,7 @@ install.packages("pacman")
 pacman::p_install_gh("Ali-Mahzarnia/fGMD")
 pacman::p_install_gh("Ali-Mahzarnia/MFSGrp")  
 ```
-## 2-Source files:
+# 2-Source files:
 If the instalation fails with the above methods, install the package from the source files wth R commands:
 ``` R
 # fGMD  
