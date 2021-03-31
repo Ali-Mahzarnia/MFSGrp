@@ -9,7 +9,7 @@ In order to have a successful installation make sure you have all of the require
 [RcppArmadillo (>= 0.10.2.2.0)](https://cran.r-project.org/web/packages/RcppArmadillo/index.html) ```install.packages("RcppArmadillo")```   
 [fda (>= 5.1.9)](https://cran.r-project.org/web/packages/fda/index.html) ```install.packages("fda")```   
 [Matrix (>=1.3-2)](https://cran.r-project.org/web/packages/Matrix/index.html) ```install.packages("Matrix")``` 
-# The following package needed only for the alternative installation method (development version)  ```install.packages("pacman") ```
+The following package is needed only for the alternative installation methods (development version)  ```install.packages("pacman") ```
 
 ## Install [fGMD](https://github.com/Ali-Mahzarnia/fGMD):
 You can install `fGMD` from [GitHub](https://github.com/Ali-Mahzarnia/fGMD) with the R command:
