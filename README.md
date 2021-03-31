@@ -3,7 +3,7 @@ This R package runs the Group Elastic Net (including lasso, ridge, elastic net, 
 
 
 ## Installation:
-## Dependencies:
+## 1-Dependencies:
 In order to have a successful installation make sure you have all of the required dependencies installed on R. Including:  
 [Rcpp (>= 1.0.6)](https://cran.r-project.org/web/packages/Rcpp/index.html) ```install.packages("Rcpp") ```  
 [RcppArmadillo (>= 0.10.2.2.0)](https://cran.r-project.org/web/packages/RcppArmadillo/index.html) ```install.packages("RcppArmadillo")```   
@@ -11,7 +11,7 @@ In order to have a successful installation make sure you have all of the require
 [Matrix (>=1.3-2)](https://cran.r-project.org/web/packages/Matrix/index.html) ```install.packages("Matrix")```   
 The [pacman](https://cran.r-project.org/web/packages/pacman/index.html) is needed only for the alternative installation methods (development version)  ```install.packages("pacman") ```
 
-## Install [fGMD](https://github.com/Ali-Mahzarnia/fGMD):
+## 2-Install [fGMD](https://github.com/Ali-Mahzarnia/fGMD):
 You can install `fGMD` from [GitHub](https://github.com/Ali-Mahzarnia/fGMD) with the R command:
 ```R
 install.packages("https://github.com/Ali-Mahzarnia/fGMD/archive/master.tar.gz", repos = NULL, type="source")
@@ -23,10 +23,15 @@ pacman::p_install_gh("Ali-Mahzarnia/fGMD")
 ```
 
 
-## Install [MFSGrp](https://github.com/Ali-Mahzarnia/MFSGrp):
+## 3-Install [MFSGrp](https://github.com/Ali-Mahzarnia/MFSGrp):
 You can install `MFSGrp` from [GitHub](https://github.com/Ali-Mahzarnia/MFSGrp) with the R code:
 ```R
 install.packages("https://github.com/Ali-Mahzarnia/MFSGrp/archive/refs/heads/main.tar.gz",  repos = NULL, type="source")
+```
+Or alternatively the development version of `MFSGrp` can be installed with R code:
+``` R
+install.packages("pacman")
+pacman::p_install_gh("Ali-Mahzarnia/MFSGrp")
 ```
 
 ## Manual and Example:
@@ -34,7 +39,7 @@ After installations you can pull up the manual that includes a simulation exampl
 ```R
 ??MFSGrp
 ```
-Click on MFSGrp::MFSGrp	under the help pages for the manual.
+Click on MFSGrp::MFSGrp	under the help pages for the manual. If the manual cannot be pulled up first try ```.rs.restartR()``` then ```??MFSGrp```.
 
 ## Main refrence
-Ali Mahzarnia, Jun Song. "Multivariate functional covariate selection", Submitted in March 2021.
+Ali Mahzarnia, Jun Song. "Multivariate functional covariate selection", Submitted in April 2021.
