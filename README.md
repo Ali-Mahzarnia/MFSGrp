@@ -22,7 +22,7 @@ install.packages("https://github.com/Ali-Mahzarnia/MFSGrp/archive/refs/heads/mai
 
 
 # Alternative Instalation Methods
-## 1- Development Version: 
+## 1- Installing The Development Version: 
 This method most likely install the required dependencies automatically. You can install development version of `MFSGrp` and `fGMD` via [pacman](https://cran.r-project.org/web/packages/pacman/index.html) with the R commands:
 ``` R  
 install.packages("pacman")  
@@ -30,7 +30,7 @@ pacman::p_install_gh("Ali-Mahzarnia/fGMD")
 pacman::p_install_gh("Ali-Mahzarnia/MFSGrp")  
 ```
 
-## 2-Source files:
+## 2-Installing From Source files:
 If the instalation fails with the other methods, install the packages from the source files directly wth R commands:
 ``` R
 # fGMD  
