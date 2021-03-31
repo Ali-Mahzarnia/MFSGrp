@@ -4,7 +4,7 @@ This R package runs the Group Elastic Net (including lasso, ridge, elastic net, 
 # Installation
 ## 1-Dependencies:
 In order to have a successful installation make sure you have all of the required dependencies installed on R. Including:  
-[Rcpp (>= 1.0.6)](https://cran.r-project.org/web/packages/Rcpp/index.html) ```install.packages("Rcpp") ```  
+[Rcpp (>= 1.0.6)](https://cran.r-project.org/web/packages/Rcpp/index.html) ```install.packages("Rcpp")```  
 [RcppArmadillo (>= 0.10.2.2.0)](https://cran.r-project.org/web/packages/RcppArmadillo/index.html) ```install.packages("RcppArmadillo")```     
 [fda (>= 5.1.9)](https://cran.r-project.org/web/packages/fda/index.html) ```install.packages("fda")```    
 [Matrix (>=1.3-2)](https://cran.r-project.org/web/packages/Matrix/index.html) ```install.packages("Matrix")```    
@@ -25,9 +25,9 @@ install.packages("https://github.com/Ali-Mahzarnia/MFSGrp/archive/refs/heads/mai
 ## 1- Installing the Development Version: 
 This method most likely install the required dependencies automatically. You can install development version of `MFSGrp` and `fGMD` via [pacman](https://cran.r-project.org/web/packages/pacman/index.html) with the R commands:
 ``` R  
-install.packages("pacman")  
+install.packages("pacman")
 pacman::p_install_gh("Ali-Mahzarnia/fGMD")
-pacman::p_install_gh("Ali-Mahzarnia/MFSGrp")  
+pacman::p_install_gh("Ali-Mahzarnia/MFSGrp")
 ```
 
 ## 2-Installing from Source files:
