@@ -48,7 +48,7 @@ MFSGrp(
 
 \item{Xtrain}{a three dimensional matrix (array) of \eqn{p} functional covariates observed at \eqn{nt} time points and sampled \eqn{n} times in the train set. The size of the array is \eqn{p \times n \times  nt}{p*n*nt}. It is recommended that the time series signals are of the same type. For instance in fMRI data they are all BOLD contrast activities of the human brain that are recorded \eqn{nt} times during a time period \eqn{T} at \eqn{p} Regions of Interests of the Brain Atlas for \eqn{n} human subjects. In another example, in an  economic data set the covariates are time series signals that are all measured in percentage.}
 
-\item{basisno}{the number of bases (of Fourier or B-spline) used in the process of converting the (time series) signals, i.e: observed functional covariates, to functional objects.}
+\item{basisno}{the number of bases (of Fourier or B-spline) used in the process of converting the (time series) signals, i.e: observed functional covariates, to functional objects. If \code{bspline=FALSE} this value must be an odd integer.}
 
 \item{tt}{a vector of  the size \eqn{nt} that includes grid points within 0 to 1. This vector represents the time of observations during the whole period of time \eqn{T} scaled to the interval \eqn{(0,1)}.}
 
@@ -59,9 +59,9 @@ MFSGrp(
 \item{loss}{inherited from \code{gglasso} package. By default it is set for the least square problem.}
 \item{part}{a vector of size \eqn{p} with entries of \code{basisno}. This vector determines the partitions associated to each functional covariate.}
 \item{Xpred, Ytrain}{ the test set versions of \code{Xtrain} and \code{Ytrain}.}
-\item{Silence}{ by default is \code{"FALSE"}. Given it is \code{"FALSE"}, if in the simulation the population coefficient curves, objects b1,b2,b3,b4,b5 etc. exist they will be displayed by green color along with their estimations. Otherwise, the estimated curves and the number of curves from \eqn{1} to \eqn{p} will be displayed in groups of six figures. There will be \code{sixplotnum} sets of six figures. If \code{sixplotnum = "max"} there will be as many figures as needed to display all of the estimated nonzero curves. At least six curves are displayed if \code{Silence=FALSE}. If in the simulation b1,b2,b3,b4,b5, etc. exist, remove them before running the regression on a real data set. See the example below.}
+\item{Silence}{ by default is \code{FALSE}. Given it is \code{FALSE}, if in the simulation the population coefficient curves, objects b1,b2,b3,b4,b5 etc. exist they will be displayed by green color along with their estimations. Otherwise, the estimated curves and the number of curves from \eqn{1} to \eqn{p} will be displayed in groups of six figures. There will be \code{sixplotnum} sets of six figures. If \code{sixplotnum = "max"} there will be as many figures as needed to display all of the estimated nonzero curves. At least six curves are displayed if \code{Silence=FALSE}. If in the simulation b1,b2,b3,b4,b5, etc. exist, remove them before running the regression on a real data set. See the example below.}
 
-\item{bspline}{if \code{"FALSE"} the functional conversions and estimations will be processed with Fourier bases. By default is \code{FALSE}.}
+\item{bspline}{if \code{FALSE} the functional conversions and estimations will be processed with Fourier bases. By default is \code{FALSE}.}
  \item{Penalty}{takes four values:
 \itemize{ \item{  \code{"glasso"} for (group) lasso.} 
  \item{\code{"ridge"} for ridge.}
@@ -74,7 +74,7 @@ MFSGrp(
 
 \item{maxit}{inherited from \code{gglasso} package. The maximum iterations of the inner loops.  By default it is \code{3e+08}.}
 
-\item{forcezero}{if \code{"TRUE"}, the estimated coefficient curves the norm of which are less than  \code{forcezeropar} will become zero curves. By default is \code{FALSE}.}
+\item{forcezero}{if \code{TRUE}, the estimated coefficient curves the norm of which are less than  \code{forcezeropar} will become zero curves. By default is \code{FALSE}.}
 
 \item{lambdaderivative}{the regularization parameter of the second derivative penalty of the estimated curves. The value \eqn{0} does not penalize the second derivative. By leaving this argument, the program computes the optimized value in a \code{nfolder}-fold net search for a grid of ten \code{lambda} between the maximum and the minimum \code{lambda} on the train set. The net search cross validation of \code{lambdaderivative} takes place for values within \code{lamdermin} \eqn{<} \code{lamdermax}, and for \code{nlamder} possible values equally spaced in the interval based on the \eqn{log()} of the interval boundaries.
 If both \code{alpha} and \code{lambdaderivative} need cross validations, first \code{lambdaderivative} is tuned with \code{alpha=0}, then \code{alpha} is regularized with the regularized \code{lambdaderivative}. Both of these processes take place before the regularizations of \code{lambda}. Note that the value \code{nfolder} must be greater than 2.
@@ -215,8 +215,8 @@ sqrt(results$MSEpredict)
 active=c(5,8,11)
 results=MFSGrp(Y=Ytrain,X=Xtrain[active,,],basisno=m,tt, part=part,Xpred
               =Xtest[active,,],Ypred=Ytest, Penalty ="OLS", bspline = T, 
-              sixplotnum = "max" ,lambdaderivative = NULL, lamdermax = 1e-2,
-              lamdermin=1e-10, nlamder=20)
+              sixplotnum = "max" ,lambdaderivative = NULL, lamdermax = 1e-3,
+              lamdermin=1e-5, nfolder=10)
 sqrt(results$MSEpredict)
 
 

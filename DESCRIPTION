@@ -10,12 +10,12 @@ Authors@R: c(
   role = c("aut"), comment = "http://www.jsong.net/")
   )
 Maintainer: Ali Mahzarnia <amahzarn@uncc.edu>
-Description: This R package runs the Group Elastic Net (including lasso, ridge, elastic net, and ordinary least square) regression with scalar response values, and observed functional covariates. In addition, it penalizes the curvature of the output by implementing a penalty on the second derivative of the estimated coefficient curves. A part of this package uses the fGMD package that is created exclusively for this package. The fGMD package is a heavily modified version of the gglasso. The features added to the original package: mixing parameter alpha and its net search cross-validation, curvature penalizing for functional regression and its net search cross-validations, optimized Fortran core function to speed up the curvature penalization updates, progress reports and time estimations. In order to have this package work first install fGMD. The fGMD package does not work independently from this package and it does not interfere with the functions of the gglasso package due to slight name differences.
+Description: This R package runs the Group Elastic Net (including lasso, ridge, elastic net, and ordinary least square) regression with scalar response values, and observed functional covariates. In addition, it penalizes the curvature of the output by implementing a penalty on the second derivative of the estimated coefficient curves. A part of this package uses the fGMD package that is created exclusively for this package. The fGMD package is a heavily modified version of the gglasso package. The features added to the original package: mixing parameter alpha and its net search cross-validation, curvature penalizing for functional regression and its net search cross-validations, optimized Fortran core function to speed up the curvature penalization updates, progress reports and time estimations. In order to have this package work first install fGMD. The fGMD package does not work independently from this package and it does not interfere with the functions of the gglasso package due to slight name differences.
 License: GPL-2
 Imports: Rcpp (>= 1.0.6), fda, fGMD, Matrix
 LinkingTo: Rcpp, RcppArmadillo
 NeedsCompilation: yes
-Packaged: 2021-03-31 03:49:48 UTC; amahzarn
+Packaged: 2021-03-31 14:41:34 UTC; amahzarn
 Author: Ali Mahzarnia [aut, cre]
     (https://math.uncc.edu/directory/ali-mahzarnia),
   Jun Song [aut] (http://www.jsong.net/)
