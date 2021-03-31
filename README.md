@@ -30,7 +30,7 @@ pacman::p_install_gh("Ali-Mahzarnia/fGMD")
 pacman::p_install_gh("Ali-Mahzarnia/MFSGrp")  
 ```
 
-## 2-Installing From Source files:
+## 2-Installing from Source files:
 If the instalation fails with the other methods, install the packages from the source files directly wth R commands:
 ``` R
 # fGMD  
