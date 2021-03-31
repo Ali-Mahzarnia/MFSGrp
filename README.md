@@ -18,7 +18,6 @@ install.packages("https://github.com/Ali-Mahzarnia/fGMD/archive/master.tar.gz", 
 ```
 Or alternatively the development version of `fGMD` can be installed with R code:
 ``` R
-install.packages("pacman")
 pacman::p_install_gh("Ali-Mahzarnia/fGMD")
 ```
 
@@ -30,7 +29,6 @@ install.packages("https://github.com/Ali-Mahzarnia/MFSGrp/archive/refs/heads/mai
 ```
 Or alternatively the development version of `MFSGrp` can be installed with R code:
 ``` R
-install.packages("pacman")
 pacman::p_install_gh("Ali-Mahzarnia/MFSGrp")
 ```
 
