@@ -25,14 +25,14 @@ Click on `MFSGrp::MFSGrp` under the help pages for the manual. If the manual can
 
 
 ## Alternative Instalation Methods:
-# 1- Development Version 
+## 1- Development Version 
 You can install development version of `MFSGrp` and `fGMD` via [pacman](https://cran.r-project.org/web/packages/pacman/index.html) with the R command:
 ``` R  
 install.packages("pacman")  
 pacman::p_install_gh("Ali-Mahzarnia/fGMD")
 pacman::p_install_gh("Ali-Mahzarnia/MFSGrp")  
 ```
-# 2-Source files:
+## 2-Source files:
 If the instalation fails with the above methods, install the package from the source files wth R commands:
 ``` R
 # fGMD  
