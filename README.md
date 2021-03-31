@@ -31,9 +31,11 @@ pacman::p_install_gh("Ali-Mahzarnia/fGMD")
 pacman::p_install_gh("Ali-Mahzarnia/MFSGrp")  
 ```
 ## Installation from source files:
-If the instalation fails with the above methods, install the package from the source files:
+If the instalation fails with the above methods, install the package from the source files wth R commands:
 ``` R
+# fGMD  
 install.packages("https://github.com/Ali-Mahzarnia/fGMD/raw/master/fGMD_1.0.tar.gz",  repos = NULL, type="source")
+# MFSGrp
 install.packages("https://github.com/Ali-Mahzarnia/MFSGrp/raw/main/MFSGrp_1.0.tar.gz",  repos = NULL, type="source")
 ```
 
