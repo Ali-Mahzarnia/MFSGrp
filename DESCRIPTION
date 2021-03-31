@@ -1,0 +1,23 @@
+Package: MFSGrp
+Type: Package
+Title: Computes multivariate Scalar-on-Functional Elastic Net solution
+Version: 1.0.0
+Date: 2021-03-22
+Authors@R: c(
+  person("Ali", "Mahzarnia", email = "amahzarn@uncc.edu",
+  role = c("aut", "cre"), comment = "https://math.uncc.edu/directory/ali-mahzarnia"),
+  person("Jun", "Song", email = "jsong19@uncc.edu",
+  role = c("aut"), comment = "http://www.jsong.net/")
+  )
+Maintainer: Ali Mahzarnia <amahzarn@uncc.edu>
+Description: This package runs the Group Elastic Net (including lasso, ridge, elastic net, and ordinary least square) regression with scalar response values, and observed functional covariates. In addition, it penalizes the curvature of the output by implementing a penalty on the second derivative of the estimated coefficient curves. A part of this package uses the fGMD package that is created exclusively for this package. The fGMD package is a heavily modified version of the gglasso that was initiated by Yang, Y. and Zou, H. (2015). The features added to the original package: mixing parameter alpha and its net search cross validation, curvature penalizing for functional regression and its net search cross-validations, optimized Fortran core function to speed up the curvature penalization updates, progress reports and time estimations. In order to have this package work first install fGMD. The fGMD  package does not work independently from this package and it does not interfere with the functions of the gglasso package due to slight name differences.
+License: GPL-2
+Imports: Rcpp (>= 1.0.6), fda, fGMD, Matrix
+LinkingTo: Rcpp, RcppArmadillo
+NeedsCompilation: yes
+Packaged: 2021-03-27 15:33:59 UTC; amahzarn
+Author: Ali Mahzarnia [aut, cre]
+    (https://math.uncc.edu/directory/ali-mahzarnia),
+  Jun Song [aut] (http://www.jsong.net/)
+RoxygenNote: 7.1.1
+Encoding: UTF-8
