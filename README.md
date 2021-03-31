@@ -16,7 +16,7 @@ You can install `fGMD` from [GitHub](https://github.com/Ali-Mahzarnia/fGMD) with
 ```R
 install.packages("https://github.com/Ali-Mahzarnia/fGMD/archive/master.tar.gz", repos = NULL, type="source")
 ```
-Or alternatively the development version of `fGMD` can be installed with R code:
+Alternatively the development version of `fGMD` can be installed with R code:
 ``` R
 pacman::p_install_gh("Ali-Mahzarnia/fGMD")
 ```
@@ -27,7 +27,7 @@ You can install `MFSGrp` from [GitHub](https://github.com/Ali-Mahzarnia/MFSGrp) 
 ```R
 install.packages("https://github.com/Ali-Mahzarnia/MFSGrp/archive/refs/heads/main.tar.gz",  repos = NULL, type="source")
 ```
-Or alternatively the development version of `MFSGrp` can be installed with R code:
+Alternatively the development version of `MFSGrp` can be installed with R code:
 ``` R
 pacman::p_install_gh("Ali-Mahzarnia/MFSGrp")
 ```
