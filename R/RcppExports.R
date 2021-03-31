@@ -2,14 +2,14 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 solvecpp <- function(A) {
-    .Call(`_MFSGrp_solvecpp`, A)
+    .Call('_MFSGrp_solvecpp', PACKAGE = 'MFSGrp', A)
 }
 
 maxeigencpp <- function(X) {
-    .Call(`_MFSGrp_maxeigencpp`, X)
+    .Call('_MFSGrp_maxeigencpp', PACKAGE = 'MFSGrp', X)
 }
 
 normcpp <- function(x, A, euc = TRUE) {
-    .Call(`_MFSGrp_normcpp`, x, A, euc)
+    .Call('_MFSGrp_normcpp', PACKAGE = 'MFSGrp', x, A, euc)
 }
 
