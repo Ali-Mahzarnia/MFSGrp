@@ -41,8 +41,8 @@ install.packages("https://github.com/Ali-Mahzarnia/MFSGrp/raw/main/MFSGrp_1.0.ta
 
 
 # Manual and Example:
-After installations you can pull up the manual that includes a simulation example by the following R command: ```??MFSGrp```.
-Click on `MFSGrp::MFSGrp` under the help pages for the manual. If the manual cannot be pulled up first try ```.rs.restartR()``` then try ```??MFSGrp```.   
+After installations you can pull up the manual that includes a simulation example by the following R command:  
+```??MFSGrp```. Click on `MFSGrp::MFSGrp` under the help pages for the manual. If the manual cannot be pulled up first try ```.rs.restartR()``` then try ```??MFSGrp```.   
 
 
 # Main refrence
