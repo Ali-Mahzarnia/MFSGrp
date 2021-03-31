@@ -19,7 +19,7 @@ install.packages("https://github.com/Ali-Mahzarnia/fGMD/archive/master.tar.gz", 
 ## Install [MFSGrp](https://github.com/Ali-Mahzarnia/MFSGrp):
 You can install `MFSGrp` from [GitHub](https://github.com/Ali-Mahzarnia/MFSGrp) with the R code:
 ```R
-install.packages("https://github.com/Ali-Mahzarnia/MFSGrp/archive/master.tar.gz", repos = NULL, type="source")
+install.packages("https://github.com/Ali-Mahzarnia/MFSGrp/archive/refs/heads/main.tar.gz",  repos = NULL, type="source")
 ```
 
 ## Manual and Example:
