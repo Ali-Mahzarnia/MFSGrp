@@ -66,7 +66,7 @@ get.fd = function(xraw,tt,basisname=NULL,nbasis=15,ncv=10,basis=NULL){
 
 
 
-
+#' @export
 # to test through after generating data
 # basisno=5 ; X=X.obs ; lambda=NULL; Y=Y 
 MFSGrp =function(Y,X, basisno=5 ,tt, lambda=NULL, alpha=NULL ,loss="ls",
