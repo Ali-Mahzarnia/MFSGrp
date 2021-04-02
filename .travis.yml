@@ -1,0 +1,15 @@
+language: r
+r:
+  - release
+  - devel
+sudo: false
+cache: packages
+
+r_github_packages: Ali-Mahzarnia/fGMD
+
+after_success:
+  - Rscript -e 'covr::codecov()'
+
+notifications:
+  email:
+    - amahzarn@uncc.edu
