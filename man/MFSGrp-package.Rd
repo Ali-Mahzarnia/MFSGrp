@@ -68,11 +68,11 @@ MFSGrp(
  \item{Penalty}{takes four values:
 \itemize{ \item{  \code{"glasso"} for (group) lasso.} 
  \item{\code{"ridge"} for ridge.}
- \item{\code{"OLS"} for ordinary least square.}
+ \item{\code{"OLS"} With this penalty, when also penalizing the curvature \code{ADMM=T} might be faster on Windows and Linux, due to the nature of the \code{C++}. On the other hand when the second derivative is not penalized \code{ADMM=F} is accurate and fast.}
  \item{\code{"gelast"} for (group) elastic net. See \code{alpha} for more info. }
  \item{\code{"gscad"} for (group) smoothly clipped absolute deviation. only works when \code{ADMM=TRUE}. However it seems to be working and has slightly different results than the (group) lasso penalty with different values of \code{a}; there is no guarantee of convergence in theory. This is  because this penalty is non-convex and the ADMM algorithm is proven to converge for convex penalties. The parameter of (group) scad is \code{a} by default \eqn{3.7}. See the reference below for more information.}}}
  
-\item{predloss}{the prediction loss used only in the process of net search and crossvalidation. Inherited from \code{gglasso} package. By default it is set as mean square error \code{"L2"}. Only can be changed to other values, such as mean absolute error \code{L1}, if \code{ADMM=FALSE}.}
+\item{predloss}{the prediction loss used only in the process of net search and cross validations. Inherited from the \code{gglasso} package. By default it is set as mean square error \code{"L2"}. Only can be changed to other values, such as mean absolute error \code{L1}, if \code{ADMM=FALSE}.}
 
 \item{eps}{inherited from \code{gglasso} package. The threshold of the inner loops. By default it is \code{1e-08}. If \code{ADMM=TRUE} \code{ABSTOL=eps*1e+4}, and \code{RELTOL=eps*1e+5}. See the reference below for more information about the stopping criteria of ADMM. }
 
@@ -84,7 +84,7 @@ MFSGrp(
 If both \code{alpha} and \code{lambdaderivative} need cross validations, first \code{lambdaderivative} is tuned with \code{alpha=0}, then \code{alpha} is regularized with the regularized \code{lambdaderivative}. Both of these processes take place before the regularizations of \code{lambda}. Note that the value \code{nfolder} must be greater than \eqn{2} if \code{ADMM=FALSE}.
 }
 
-\item{ADMM}{by default is \code{FALSE}. If \code{TRUE} the algorithm is the Alternating Direction Method of Multiplier and computations are parallel on Linux (however serial on Windows). Recommended only on a system equipped with many strong cores. Number of cores to be used is \code{numcores}. Leaving \code{numcores} assigns maximum number of possible cores on the system except for two of them. If the input \code{numcores} is greater than maximum number of cores, the maximum number of possible cores will be assigned as \code{numcores}.}
+\item{ADMM}{by default is \code{FALSE}. If \code{TRUE} the algorithm is the Alternating Direction Method of Multiplier and computations are parallel on Linux (however serial on Windows). Recommended only on a system equipped with many strong cores. Number of cores to be used is \code{numcores}. Leaving \code{numcores} assigns maximum number of possible cores on the system except for two of them. If the input \code{numcores} is greater than the maximum number of cores, the maximum number of possible cores will be assigned as \code{numcores}.}
 }
 \value{
 \item{coef}{vector of size \code{basisno}\eqn{*p}. The coefficients of the \eqn{p} estimated functional curves based on \code{basisno} bases.}
@@ -108,8 +108,8 @@ for(j in 1:p){
     X[j,i,]=cumsum(rnorm(nt,0,1)) }
 }
 
-#true nonzero coefs: beta_5, beta_8, beta_11 the rest are zeros
-#beta_5(t)=sin(3*pi*t), beta_8(t)=sin(5*pi*t/2) and beta_11(t)=t^2
+# true nonzero coefs: beta_5, beta_8, beta_11 the rest are zeros
+# beta_5(t)=sin(3*pi*t), beta_8(t)=sin(5*pi*t/2) and beta_11(t)=t^2
 beta5 = function(t){return(sin(3*pi*t/2))}
 beta8 = function(t){return(sin(5*pi*t/2))}
 beta11=function(t){return(t^2)}
@@ -117,7 +117,7 @@ b5=matrix(0, ncol=1, nrow=nt)
 b8=matrix(0, ncol=1, nrow=nt)
 b11=matrix(0, ncol=1, nrow=nt)
 
-#evaluate population betas on (0,1) at five hundred time points
+# evaluate population betas on (0,1) at five hundred time points
 for(i in 0:nt){
   j=i
   b5[i]=beta5(j/nt)
@@ -125,7 +125,7 @@ for(i in 0:nt){
   b11[i]=beta11(j/nt)
 }
 
-#evaluate inner product of Xs and beta 5 and 8 and 11 via Reiman sum
+# evaluate the inner product of Xs and beta 5 and 8 and 11 via Reiman sum
 Xb5=matrix(0, ncol=n, nrow=1)
 Xb8=matrix(0, ncol=n, nrow=1)
 Xb11=matrix(0, ncol=n, nrow=1)
@@ -218,17 +218,19 @@ sqrt(results$MSEpredict)
 
 
 # oracle
-active=c(5,8,11)
+# as explained in the manual because of C++, this regression is faster with ADMM even on Windows 
+
+active=c(5,8,11) # the active set: of three nonzero coefficients
 results=MFSGrp(Y=Ytrain,X=Xtrain[active,,],basisno=m,tt, part=part,Xpred
               =Xtest[active,,],Ypred=Ytest, Penalty ="OLS", bspline = T, 
               sixplotnum = "max" ,lambdaderivative = NULL, lamdermax = 1e-3,
-              lamdermin=1e-5, nfolder=10)
+              lamdermin=1e-5, nfolder=10, ADMM=T)
 sqrt(results$MSEpredict)
 
 
-#  regression with no shrinkage or sparse penalty, only with second derivative penalty
+# regression with no shrinkage or sparse penalty, only with second derivative penalty
 results=MFSGrp(Ytrain,X=Xtrain,basisno=m,tt, part=part,Xpred=Xtest,Ypred=Ytest, 
-          Penalty ="OLS", bspline = T, sixplotnum = 2)
+          Penalty ="OLS", bspline = T, sixplotnum = 3, ADMM=T)
 sqrt(results$MSEpredict)
 sum(results$coef==0)/m
 
@@ -240,7 +242,7 @@ sqrt(results$MSEpredict)
 sum(results$coef==0)/m
 
 
-# An example with ADMM 
+# an example with penalty with ADMM 
 results=MFSGrp(Ytrain,Xtrain,basisno=m,tt, part=part,Xpred=Xtest,
            Ypred=Ytest, Penalty = "glasso" , bspline=T, sixplotnum="max" , 
            lamdermax=1e-3, lamdermin = 1e-5, ADMM=TRUE)

@@ -314,6 +314,7 @@ else{
   
   if (Penalty=="glasso" |  Penalty=="gscad") {alpha=0;}
   if(Penalty=="ridge" | Penalty=="OLS"){alpha=1;}
+  if(Penalty=="OLS"){lambda=0;}
   
   euc=TRUE; if ( bspline==TRUE & fpca==F ) {euc=FALSE};
   group <- rep(1:p,each=m)
