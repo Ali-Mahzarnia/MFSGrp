@@ -9,7 +9,6 @@ r_github_packages: Ali-Mahzarnia/fGMD
 
 warnings_are_errors: false
 
-
 notifications:
   email:
     - amahzarn@uncc.edu
