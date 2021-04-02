@@ -61,11 +61,14 @@ MFSGrp(
 
 
 \item{part}{a vector of size \eqn{p} with entries of \code{basisno}. This vector determines the partitions associated to each functional covariate.}
+
 \item{Xpred, Ytrain}{ the test set versions of \code{Xtrain} and \code{Ytrain}.}
+
 \item{Silence}{ by default is \code{FALSE}. Given it is \code{FALSE}, if in the simulation the population coefficient curves, objects b1,b2,b3,b4,b5 etc. exist they will be displayed by green color along with their estimations. Otherwise, the estimated curves and the number of curves from \eqn{1} to \eqn{p} will be displayed in groups of six figures. There will be \code{sixplotnum} sets of six figures. If \code{sixplotnum = "max"} there will be as many figures as needed to display all of the estimated nonzero curves. At least six curves are displayed if \code{Silence=FALSE}. If in the simulation b1,b2,b3,b4,b5, etc. exist, remove them before running the regression on a real data set. See the example below.}
 
 \item{bspline}{if \code{FALSE} the functional conversions and estimations will be processed with Fourier bases. By default is \code{FALSE}.}
- \item{Penalty}{takes four values:
+
+ \item{Penalty}{takes five values:
 \itemize{ \item{  \code{"glasso"} for (group) lasso.} 
  \item{\code{"ridge"} for ridge.}
  \item{\code{"OLS"} With this penalty, when also penalizing the curvature \code{ADMM=T} might be faster on Windows and Linux, due to the nature of the \code{C++}. On the other hand when the second derivative is not penalized \code{ADMM=F} is accurate and fast.}
@@ -242,7 +245,7 @@ sqrt(results$MSEpredict)
 sum(results$coef==0)/m
 
 
-# an example with penalty with ADMM 
+# an ADMM example with penalty
 results=MFSGrp(Ytrain,Xtrain,basisno=m,tt, part=part,Xpred=Xtest,
            Ypred=Ytest, Penalty = "glasso" , bspline=T, sixplotnum="max" , 
            lamdermax=1e-3, lamdermin = 1e-5, ADMM=TRUE)

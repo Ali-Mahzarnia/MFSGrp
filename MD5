@@ -1,7 +1,7 @@
-b94a9de4b51bf607e2382db2c0b79dd2 *build/partial.rdb
+17b833f4e4b41596a7ee58b6b9b59e71 *build/partial.rdb
 94d55d512a9ba36caa9b7df079bae19f *COPYING
-a6b6c4aacfe7625ed64c3d7df4669436 *DESCRIPTION
-e66d17449e89f57a4c0deaa3d438c731 *man/MFSGrp-package.Rd
+6d55551664537b3961e7bc35da75a4ab *DESCRIPTION
+8cc6bc29f64ac2f663827a0731ab4ac8 *man/MFSGrp-package.Rd
 d1786a354feabed2e05613297398eb8f *NAMESPACE
 481bd9755dc9b6cac9a8cd0511268a66 *R/mfsg.R
 e63a91554c35b7bd5c259174abcb4bd9 *R/RcppExports.R
