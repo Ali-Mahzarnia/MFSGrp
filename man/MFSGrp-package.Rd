@@ -40,7 +40,10 @@ MFSGrp(
   lamdermin=1e-9,
   lamdermax=1e-3,
   alphamin=0 ,
-  alphamax=1
+  alphamax=1,
+  a=3.7, 
+  ADMM=FALSE,
+  numcores=NULL 
   )
 }
 \arguments{
@@ -52,11 +55,11 @@ MFSGrp(
 
 \item{tt}{a vector of  the size \eqn{nt} that includes grid points within 0 to 1. This vector represents the time of observations during the whole period of time \eqn{T} scaled to the interval \eqn{(0,1)}.}
 
-\item{lambda}{ regularization parameter of the (group) lasso penalty term (given alpha=0). By leaving this argument, the program computes the optimized value in a \code{nfolds}-fold cross validation on the train set. The cross validation takes place for values within \code{lambdafactor}*\code{lambdamax} (computed maximum lambda by KKT condition) and \code{lambdamax}, for \code{nlambda} possible values equally spaced in the interval based on the \eqn{log()} of the interval boundaries. if the curve of RMSE vs. log(\code{lambda}) is not U-shaped consider a smaller value for \code{lambdafactor} than the default.}
+\item{lambda}{ regularization parameter of the (group) lasso penalty term (given alpha=0). By leaving this argument, the program computes the optimized value in a \code{nfolds}-fold cross validation on the train set. The cross validation takes place for values within \code{lambdafactor}*\code{lambdamax} (computed maximum lambda by KKT condition) and \code{lambdamax}, for \code{nlambda} possible values equally spaced in the interval based on the \eqn{log()} of the interval boundaries. if the curve of RMSE vs. log(\code{lambda}) is not U-shaped consider a smaller value for \code{lambdafactor} than the default. If \code{ADMM=FALSE}, the value of \code{nfolds} must be greater than \eqn{2}.}
 
-\item{alpha}{the Elastic Net mixing parameter. For the (group) lasso, \code{alpha} becomes \eqn{0} automatically, for the Ridge penalty it  becomes 1. If it is 1 the penalty becomes ridge automatically. The only way to incorporate a user-defined \code{alpha} value between 0 and \eqn{1} is to set \code{penalty="gelast"}. When \code{penalty="gelast"}, by leaving this argument, the program computes the optimized value in a \code{nfolder}-fold net search for a grid of ten \code{lambda} between the maximum and the minimum \code{lambda} on the train set. The net search cross validation of \code{alpha} takes place for values within \eqn{0} \eqn{<} \code{alphamin} \eqn{<} \code{alphamax} \eqn{<} \eqn{1}, and for \code{nalpha} possible values equally spaced in the interval. The value \code{nfolder} must be greater than 2.}
+\item{alpha}{the Elastic Net mixing parameter. For the (group) lasso, \code{alpha} becomes \eqn{0} automatically, for the Ridge penalty it  becomes 1. If it is 1 the penalty becomes ridge automatically. The only way to incorporate a user-defined \code{alpha} value between 0 and \eqn{1} is to set \code{penalty="gelast"}. When \code{penalty="gelast"}, by leaving this argument, the program computes the optimized value in a \code{nfolder}-fold net search for a grid of ten \code{lambda} between the maximum and the minimum \code{lambda} on the train set. The net search cross validation of \code{alpha} takes place for values within \eqn{0} \eqn{<} \code{alphamin} \eqn{<} \code{alphamax} \eqn{<} \eqn{1}, and for \code{nalpha} possible values equally spaced in the interval. If \code{ADMM=FALSE}, the value \code{nfolder} must be greater than \eqn{2}.}
 
-\item{loss}{inherited from \code{gglasso} package. By default it is set for the least square problem.}
+
 \item{part}{a vector of size \eqn{p} with entries of \code{basisno}. This vector determines the partitions associated to each functional covariate.}
 \item{Xpred, Ytrain}{ the test set versions of \code{Xtrain} and \code{Ytrain}.}
 \item{Silence}{ by default is \code{FALSE}. Given it is \code{FALSE}, if in the simulation the population coefficient curves, objects b1,b2,b3,b4,b5 etc. exist they will be displayed by green color along with their estimations. Otherwise, the estimated curves and the number of curves from \eqn{1} to \eqn{p} will be displayed in groups of six figures. There will be \code{sixplotnum} sets of six figures. If \code{sixplotnum = "max"} there will be as many figures as needed to display all of the estimated nonzero curves. At least six curves are displayed if \code{Silence=FALSE}. If in the simulation b1,b2,b3,b4,b5, etc. exist, remove them before running the regression on a real data set. See the example below.}
@@ -66,19 +69,22 @@ MFSGrp(
 \itemize{ \item{  \code{"glasso"} for (group) lasso.} 
  \item{\code{"ridge"} for ridge.}
  \item{\code{"OLS"} for ordinary least square.}
- \item{\code{"gelast"} for (group) elastic net. See \code{alpha} for more info. }}}
+ \item{\code{"gelast"} for (group) elastic net. See \code{alpha} for more info. }
+ \item{\code{"gscad"} for (group) smoothly clipped absolute deviation. only works when \code{ADMM=TRUE}. However it seems to be working and has slightly different results than the (group) lasso penalty with different values of \code{a}; there is no guarantee of convergence in theory. This is  because this penalty is non-convex and the ADMM algorithm is proven to converge for convex penalties. The parameter of (group) scad is \code{a} by default \eqn{3.7}. See the reference below for more information.}}}
  
-\item{loss}{inherited from \code{gglasso} package. By default it is set for the least square \code{"L2"}.}
+\item{predloss}{the prediction loss used only in the process of net search and crossvalidation. Inherited from \code{gglasso} package. By default it is set as mean square error \code{"L2"}. Only can be changed to other values, such as mean absolute error \code{L1}, if \code{ADMM=FALSE}.}
 
-\item{eps}{inherited from \code{gglasso} package. The threshold of the inner loops. By default it is \code{1e-08}.}
+\item{eps}{inherited from \code{gglasso} package. The threshold of the inner loops. By default it is \code{1e-08}. If \code{ADMM=TRUE} \code{ABSTOL=eps*1e+4}, and \code{RELTOL=eps*1e+5}. See the reference below for more information about the stopping criteria of ADMM. }
 
-\item{maxit}{inherited from \code{gglasso} package. The maximum iterations of the inner loops.  By default it is \code{3e+08}.}
+\item{maxit}{inherited from \code{gglasso} package. The maximum iterations of the inner loops.  By default it is \code{3e+08}. If \code{ADMM=TRUE} this value (including its default) is divided by \code{3e+6}.}
 
 \item{forcezero}{if \code{TRUE}, the estimated coefficient curves the norm of which are less than  \code{forcezeropar} will become zero curves. By default is \code{FALSE}.}
 
 \item{lambdaderivative}{the regularization parameter of the second derivative penalty of the estimated curves. The value \eqn{0} does not penalize the second derivative. By leaving this argument, the program computes the optimized value in a \code{nfolder}-fold net search for a grid of ten \code{lambda} between the maximum and the minimum \code{lambda} on the train set. The net search cross validation of \code{lambdaderivative} takes place for values within \code{lamdermin} \eqn{<} \code{lamdermax}, and for \code{nlamder} possible values equally spaced in the interval based on the \eqn{log()} of the interval boundaries.
-If both \code{alpha} and \code{lambdaderivative} need cross validations, first \code{lambdaderivative} is tuned with \code{alpha=0}, then \code{alpha} is regularized with the regularized \code{lambdaderivative}. Both of these processes take place before the regularizations of \code{lambda}. Note that the value \code{nfolder} must be greater than 2.
+If both \code{alpha} and \code{lambdaderivative} need cross validations, first \code{lambdaderivative} is tuned with \code{alpha=0}, then \code{alpha} is regularized with the regularized \code{lambdaderivative}. Both of these processes take place before the regularizations of \code{lambda}. Note that the value \code{nfolder} must be greater than \eqn{2} if \code{ADMM=FALSE}.
 }
+
+\item{ADMM}{by default is \code{FALSE}. If \code{TRUE} the algorithm is the Alternating Direction Method of Multiplier and computations are parallel on Linux (however serial on Windows). Recommended only on a system equipped with many strong cores. Number of cores to be used is \code{numcores}. Leaving \code{numcores} assigns maximum number of possible cores on the system except for two of them. If the input \code{numcores} is greater than maximum number of cores, the maximum number of possible cores will be assigned as \code{numcores}.}
 }
 \value{
 \item{coef}{vector of size \code{basisno}\eqn{*p}. The coefficients of the \eqn{p} estimated functional curves based on \code{basisno} bases.}
@@ -234,11 +240,20 @@ sqrt(results$MSEpredict)
 sum(results$coef==0)/m
 
 
+# An example with ADMM 
+results=MFSGrp(Ytrain,Xtrain,basisno=m,tt, part=part,Xpred=Xtest,
+           Ypred=Ytest, Penalty = "glasso" , bspline=T, sixplotnum="max" , 
+           lamdermax=1e-3, lamdermin = 1e-5, ADMM=TRUE)
+sqrt(results$MSEpredict)  # test Root MSE
+sum(results$coef==0)/m    # number of zero functional coefficients.
+results$lambda # the regularized lambda
+
+
 # remove the population curves before data application
 remove(b5,b8,b11)
 }
 \references{
-Ali Mahzarnia, Jun Song. "Multivariate functional covariate selection", Submitted in April 2021.
+Ali Mahzarnia, Jun Song. "Multivariate functional covariate selection", Submitted for publication in  2021.
 
 Yang, Y. and Zou, H. (2015), "A Fast Unified Algorithm for
 Computing Group-Lasso Penalized Learning Problems," \emph{Statistics and
@@ -247,6 +262,12 @@ Computing}. 25(6), 1129-1141.
 Friedman, J., Hastie, T., and Tibshirani, R. (2010), "Regularization paths
 for generalized linear models via coordinate descent," \emph{Journal of
 Statistical Software}, 33, 1.
+
+S. Boyd, N. Parikh, E. Chu, B. Peleato, and J. Eckstein (2010) "Distributed Optimization and Statistical Learning via the Alternating Direction Method of Multipliers"  \emph{Foundations and Trends R in Machine Learning}, 3,1.
+
+Fan, J and Li, R. (2001) "Variable Selection via Nonconcave Penalized Likelihood and its Oracle Properties" \emph{Journal of the American Statistical Association}, 96, 456. 
+
+
 }
 \seealso{
 \code{fGMD} package. Install \code{fGMD} in order to have \code{MFSGrp} package work.
@@ -256,3 +277,5 @@ Ali Mahzarnia and Jun Song\cr Maintainer: Ali Mahzarnia <amahzarn@uncc.edu>
 }
 \keyword{Scalar-on-Functional Regression}
 \keyword{Elastic net}
+
+

@@ -41,11 +41,81 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// softcpp
+arma::rowvec softcpp(const arma::vec& x, const arma::mat& A, double lambda, bool euc);
+RcppExport SEXP _MFSGrp_softcpp(SEXP xSEXP, SEXP ASEXP, SEXP lambdaSEXP, SEXP eucSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const arma::vec& >::type x(xSEXP);
+    Rcpp::traits::input_parameter< const arma::mat& >::type A(ASEXP);
+    Rcpp::traits::input_parameter< double >::type lambda(lambdaSEXP);
+    Rcpp::traits::input_parameter< bool >::type euc(eucSEXP);
+    rcpp_result_gen = Rcpp::wrap(softcpp(x, A, lambda, euc));
+    return rcpp_result_gen;
+END_RCPP
+}
+// softscadcpp
+arma::rowvec softscadcpp(const arma::vec& x, const arma::mat& Gram, double lambda, double rho, double a, bool euc);
+RcppExport SEXP _MFSGrp_softscadcpp(SEXP xSEXP, SEXP GramSEXP, SEXP lambdaSEXP, SEXP rhoSEXP, SEXP aSEXP, SEXP eucSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const arma::vec& >::type x(xSEXP);
+    Rcpp::traits::input_parameter< const arma::mat& >::type Gram(GramSEXP);
+    Rcpp::traits::input_parameter< double >::type lambda(lambdaSEXP);
+    Rcpp::traits::input_parameter< double >::type rho(rhoSEXP);
+    Rcpp::traits::input_parameter< double >::type a(aSEXP);
+    Rcpp::traits::input_parameter< bool >::type euc(eucSEXP);
+    rcpp_result_gen = Rcpp::wrap(softscadcpp(x, Gram, lambda, rho, a, euc));
+    return rcpp_result_gen;
+END_RCPP
+}
+// foldcpp
+arma::vec foldcpp(arma::vec Y, const arma::mat& X, int basisno, const arma::rowvec& tt, double lambda, double alpha, const arma::mat& GG, double lambdader, const arma::rowvec& part, double rho, std::string Penalty, const arma::mat& GGder, int K, const arma::mat& Gram, const arma::mat& oldGram, int n, int p, int m, int kf, bool euc, bool Path, double eps, int maxit, double a, int id, int idmax, bool alphanet);
+RcppExport SEXP _MFSGrp_foldcpp(SEXP YSEXP, SEXP XSEXP, SEXP basisnoSEXP, SEXP ttSEXP, SEXP lambdaSEXP, SEXP alphaSEXP, SEXP GGSEXP, SEXP lambdaderSEXP, SEXP partSEXP, SEXP rhoSEXP, SEXP PenaltySEXP, SEXP GGderSEXP, SEXP KSEXP, SEXP GramSEXP, SEXP oldGramSEXP, SEXP nSEXP, SEXP pSEXP, SEXP mSEXP, SEXP kfSEXP, SEXP eucSEXP, SEXP PathSEXP, SEXP epsSEXP, SEXP maxitSEXP, SEXP aSEXP, SEXP idSEXP, SEXP idmaxSEXP, SEXP alphanetSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::vec >::type Y(YSEXP);
+    Rcpp::traits::input_parameter< const arma::mat& >::type X(XSEXP);
+    Rcpp::traits::input_parameter< int >::type basisno(basisnoSEXP);
+    Rcpp::traits::input_parameter< const arma::rowvec& >::type tt(ttSEXP);
+    Rcpp::traits::input_parameter< double >::type lambda(lambdaSEXP);
+    Rcpp::traits::input_parameter< double >::type alpha(alphaSEXP);
+    Rcpp::traits::input_parameter< const arma::mat& >::type GG(GGSEXP);
+    Rcpp::traits::input_parameter< double >::type lambdader(lambdaderSEXP);
+    Rcpp::traits::input_parameter< const arma::rowvec& >::type part(partSEXP);
+    Rcpp::traits::input_parameter< double >::type rho(rhoSEXP);
+    Rcpp::traits::input_parameter< std::string >::type Penalty(PenaltySEXP);
+    Rcpp::traits::input_parameter< const arma::mat& >::type GGder(GGderSEXP);
+    Rcpp::traits::input_parameter< int >::type K(KSEXP);
+    Rcpp::traits::input_parameter< const arma::mat& >::type Gram(GramSEXP);
+    Rcpp::traits::input_parameter< const arma::mat& >::type oldGram(oldGramSEXP);
+    Rcpp::traits::input_parameter< int >::type n(nSEXP);
+    Rcpp::traits::input_parameter< int >::type p(pSEXP);
+    Rcpp::traits::input_parameter< int >::type m(mSEXP);
+    Rcpp::traits::input_parameter< int >::type kf(kfSEXP);
+    Rcpp::traits::input_parameter< bool >::type euc(eucSEXP);
+    Rcpp::traits::input_parameter< bool >::type Path(PathSEXP);
+    Rcpp::traits::input_parameter< double >::type eps(epsSEXP);
+    Rcpp::traits::input_parameter< int >::type maxit(maxitSEXP);
+    Rcpp::traits::input_parameter< double >::type a(aSEXP);
+    Rcpp::traits::input_parameter< int >::type id(idSEXP);
+    Rcpp::traits::input_parameter< int >::type idmax(idmaxSEXP);
+    Rcpp::traits::input_parameter< bool >::type alphanet(alphanetSEXP);
+    rcpp_result_gen = Rcpp::wrap(foldcpp(Y, X, basisno, tt, lambda, alpha, GG, lambdader, part, rho, Penalty, GGder, K, Gram, oldGram, n, p, m, kf, euc, Path, eps, maxit, a, id, idmax, alphanet));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_MFSGrp_solvecpp", (DL_FUNC) &_MFSGrp_solvecpp, 1},
     {"_MFSGrp_maxeigencpp", (DL_FUNC) &_MFSGrp_maxeigencpp, 1},
     {"_MFSGrp_normcpp", (DL_FUNC) &_MFSGrp_normcpp, 3},
+    {"_MFSGrp_softcpp", (DL_FUNC) &_MFSGrp_softcpp, 4},
+    {"_MFSGrp_softscadcpp", (DL_FUNC) &_MFSGrp_softscadcpp, 6},
+    {"_MFSGrp_foldcpp", (DL_FUNC) &_MFSGrp_foldcpp, 27},
     {NULL, NULL, 0}
 };
 

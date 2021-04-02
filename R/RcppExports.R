@@ -13,3 +13,15 @@ normcpp <- function(x, A, euc = TRUE) {
     .Call(`_MFSGrp_normcpp`, x, A, euc)
 }
 
+softcpp <- function(x, A, lambda, euc = TRUE) {
+    .Call(`_MFSGrp_softcpp`, x, A, lambda, euc)
+}
+
+softscadcpp <- function(x, Gram, lambda, rho, a = 3.7, euc = TRUE) {
+    .Call(`_MFSGrp_softscadcpp`, x, Gram, lambda, rho, a, euc)
+}
+
+foldcpp <- function(Y, X, basisno, tt, lambda, alpha, GG, lambdader, part, rho, Penalty, GGder, K, Gram, oldGram, n, p, m, kf = 10L, euc = TRUE, Path = FALSE, eps = 1e-08, maxit = 1000L, a = 3.7, id = 1L, idmax = 1L, alphanet = FALSE) {
+    .Call(`_MFSGrp_foldcpp`, Y, X, basisno, tt, lambda, alpha, GG, lambdader, part, rho, Penalty, GGder, K, Gram, oldGram, n, p, m, kf, euc, Path, eps, maxit, a, id, idmax, alphanet)
+}
+
