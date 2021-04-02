@@ -43,7 +43,8 @@ MFSGrp(
   alphamax=1,
   a=3.7, 
   ADMM=FALSE,
-  numcores=NULL 
+  numcores=NULL,
+  rho=1
   )
 }
 \arguments{
@@ -87,7 +88,7 @@ MFSGrp(
 If both \code{alpha} and \code{lambdaderivative} need cross validations, first \code{lambdaderivative} is tuned with \code{alpha=0}, then \code{alpha} is regularized with the regularized \code{lambdaderivative}. Both of these processes take place before the regularizations of \code{lambda}. Note that the value \code{nfolder} must be greater than \eqn{2} if \code{ADMM=FALSE}.
 }
 
-\item{ADMM}{by default is \code{FALSE}. If \code{TRUE} the algorithm is the Alternating Direction Method of Multiplier and computations are parallel on Linux (however serial on Windows). Recommended only on a system equipped with many strong cores. Number of cores to be used is \code{numcores}. Leaving \code{numcores} assigns maximum number of possible cores on the system. If the input \code{numcores} is greater than the maximum number of available cores, the maximum number of possible cores on the system will be assigned as \code{numcores}.}
+\item{ADMM}{by default is \code{FALSE}. If \code{TRUE} the algorithm is the Alternating Direction Method of Multiplier and computations are parallel on Linux (however serial on Windows). Recommended only on a system equipped with many strong cores. Number of cores to be used is \code{numcores}. Leaving \code{numcores} assigns maximum number of possible cores on the system. If the input \code{numcores} is greater than the maximum number of available cores, the maximum number of possible cores on the system will be assigned as \code{numcores}. The augmented parameter, or the step size is \code{rho}, which is by default \eqn{1}. See the reference below for more information. }
 }
 \value{
 \item{coef}{vector of size \code{basisno}\eqn{*p}. The coefficients of the \eqn{p} estimated functional curves based on \code{basisno} bases.}
@@ -249,6 +250,14 @@ sum(results$coef==0)/m
 results=MFSGrp(Ytrain,Xtrain,basisno=m,tt, part=part,Xpred=Xtest,
            Ypred=Ytest, Penalty = "glasso" , bspline=TRUE, sixplotnum="max" , 
            lamdermax=1e-3, lamdermin = 1e-5, ADMM=TRUE)
+sqrt(results$MSEpredict)  # test Root MSE
+sum(results$coef==0)/m    # number of zero functional coefficients.
+results$lambda # the regularized lambda
+
+# another ADMM example with penalty and with a different rho
+results=MFSGrp(Ytrain,Xtrain,basisno=m,tt, part=part,Xpred=Xtest,
+           Ypred=Ytest, Penalty = "glasso" , bspline=TRUE, sixplotnum="max" , 
+           lamdermax=1e-3, lamdermin = 1e-5, ADMM=TRUE, rho=0.5)
 sqrt(results$MSEpredict)  # test Root MSE
 sum(results$coef==0)/m    # number of zero functional coefficients.
 results$lambda # the regularized lambda

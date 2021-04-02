@@ -75,7 +75,7 @@ MFSGrp =function(Y,X, basisno=5 ,tt, lambda=NULL, alpha=NULL ,
                 predloss="L2", eps = 1e-08, maxit = 3e+08, nlambda=100, forcezero=FALSE, 
                 forcezeropar=0.001, sixplotnum=1, lambdaderivative=NULL,
                 nfolder=5, nalpha=9, nlamder=10, lamdermin=1e-9, lamdermax=1e-3,alphamin=0 ,alphamax=1,
-                a=3.7, ADMM=FALSE,numcores=NULL ){
+                a=3.7, ADMM=FALSE,numcores=NULL, rho=1 ){
   
   loss="ls";
 #######if( ) stop("orthaganlization must be one (orth=T) if ")
@@ -365,7 +365,7 @@ else{
         #parallel::mclapply
         #cat("\r The ", j, "th of the ", nlamder  ," lamdaders " )
         mse=pbmcapply::pbmclapply(lam,function(lambdas){foldcpp(Y=Y,X=Xcoef, basisno=basisno ,tt=tt, lambda=lambdas, 
-                                                   alpha=alp , part=part, rho=1 , 
+                                                   alpha=alp , part=part, rho=rho , 
                                                    Penalty=Penalty, GG=GG, lambdader =lambdaders[j], 
                                                    GGder=GGder,K=K, Gram=Gram,oldGram=oldGram,n=n,p=p,m=m,
                                                    kf=nfolder, euc=euc, Path=FALSE,
@@ -413,7 +413,7 @@ else{
       #cat("\r The ", j, "th of the ", nalpha  ," alphas " )
       
       mse=pbmcapply::pbmclapply(lam,function(lambdas){foldcpp(Y=Y,X=Xcoef, basisno=basisno ,tt=tt, lambda=lambdas, 
-                                                 alpha=alphas[j] , part=part, rho=1 , 
+                                                 alpha=alphas[j] , part=part, rho=rho , 
                                                  Penalty=Penalty, GG=GG, lambdader =lambdader, 
                                                  GGder=GGder,K=K, Gram=Gram,oldGram=oldGram,n=n,p=p,m=m,
                                                  kf=nfolder, euc=euc, Path=FALSE,
@@ -462,7 +462,7 @@ else{
     else{lambdas=lambda}
     #print(lambdas)
     mse=pbmcapply::pbmclapply(lambdas,function(lambd){foldcpp(Y=Y,X=Xcoef, basisno=basisno ,tt=tt, lambda=lambd, 
-                                                   alpha=alpha , part=part, rho=1 , 
+                                                   alpha=alpha , part=part, rho=rho , 
                                                    Penalty=Penalty, GG=GG, lambdader =lambdader, 
                                                    GGder=GGder,K=K, Gram=Gram,oldGram=oldGram,n=n,p=p,m=m,
                                                    kf=nfolds, euc=euc, Path=TRUE,
@@ -479,7 +479,7 @@ else{
   
   
   final=foldcpp(Y=Y,X=Xcoef, basisno=basisno ,tt=tt, lambda=lambda, 
-                alpha=alpha , part=part, rho=1 , 
+                alpha=alpha , part=part, rho=rho , 
                 Penalty=Penalty, GG=GG, lambdader =lambdader, 
                 GGder=GGder,K=K, Gram=Gram,oldGram=oldGram,n=n,p=p,m=m,
                 kf=1, euc=euc, Path=TRUE,

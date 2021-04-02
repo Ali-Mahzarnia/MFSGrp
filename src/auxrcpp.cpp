@@ -76,7 +76,7 @@ arma::vec foldcpp(arma::vec Y, const arma::mat& X, int basisno, const arma::rowv
                     , int kf=10, bool euc=true, bool Path=false, double eps=1e-08,
                       int maxit=1000, double a=3.7, int id=1, int idmax=1,
                       bool alphanet=false){
-  rho=1.0 ;
+
   arma::mat  Xmain=X;
   arma::vec  Ymain=Y;
   int step=floor(n/kf);
