@@ -49,4 +49,4 @@ After installations you can pull up the manual that includes a simulation exampl
 
 
 # Main refrence
-Ali Mahzarnia, Jun Song. "Multivariate functional covariate selection", Submitted in 2021.
+Ali Mahzarnia, Jun Song. "Multivariate functional covariate selection", Submitted for publication in 2021.
