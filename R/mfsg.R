@@ -301,8 +301,7 @@ else{
     numcores = 1
   } else {
     coremax=parallel::detectCores()
-    coremax=coremax-2
-    if(!is.null(numcores)) { if(numcores>coremax+2) numcores=coremax+2;}
+    if(!is.null(numcores)) { if(numcores>coremax) numcores=coremax;}
     if(is.null(numcores))  { numcores=coremax; }
     
   }

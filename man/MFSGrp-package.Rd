@@ -87,7 +87,7 @@ MFSGrp(
 If both \code{alpha} and \code{lambdaderivative} need cross validations, first \code{lambdaderivative} is tuned with \code{alpha=0}, then \code{alpha} is regularized with the regularized \code{lambdaderivative}. Both of these processes take place before the regularizations of \code{lambda}. Note that the value \code{nfolder} must be greater than \eqn{2} if \code{ADMM=FALSE}.
 }
 
-\item{ADMM}{by default is \code{FALSE}. If \code{TRUE} the algorithm is the Alternating Direction Method of Multiplier and computations are parallel on Linux (however serial on Windows). Recommended only on a system equipped with many strong cores. Number of cores to be used is \code{numcores}. Leaving \code{numcores} assigns maximum number of possible cores on the system except for two of them. If the input \code{numcores} is greater than the maximum number of cores, the maximum number of possible cores will be assigned as \code{numcores}.}
+\item{ADMM}{by default is \code{FALSE}. If \code{TRUE} the algorithm is the Alternating Direction Method of Multiplier and computations are parallel on Linux (however serial on Windows). Recommended only on a system equipped with many strong cores. Number of cores to be used is \code{numcores}. Leaving \code{numcores} assigns maximum number of possible cores on the system. If the input \code{numcores} is greater than the maximum number of available cores, the maximum number of possible cores on the system will be assigned as \code{numcores}.}
 }
 \value{
 \item{coef}{vector of size \code{basisno}\eqn{*p}. The coefficients of the \eqn{p} estimated functional curves based on \code{basisno} bases.}
