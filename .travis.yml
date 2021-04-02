@@ -6,6 +6,8 @@ cache: packages
 
 r_github_packages: Ali-Mahzarnia/fGMD
 
+warnings_are_errors: false
+
 after_success:
   - Rscript -e 'covr::codecov()'
 
