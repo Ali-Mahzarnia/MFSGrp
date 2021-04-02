@@ -4,6 +4,15 @@ r:
   - devel
 sudo: false
 cache: packages
+r_packages:
+  - knitr
+  - devtools
+  - methods
+  - Rcpp
+  - RcppArmadillo
+  - fda
+  - Matrix 
+  - pbmcapply
 
 r_github_packages: Ali-Mahzarnia/fGMD
 
