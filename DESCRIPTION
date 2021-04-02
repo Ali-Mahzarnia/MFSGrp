@@ -17,7 +17,7 @@ Imports: Rcpp (>= 1.0.6), fda (>= 5.1.9), fGMD, Matrix (>= 1.3-2),
         parallel, pbmcapply (>= 1.5.0)
 LinkingTo: Rcpp, RcppArmadillo
 NeedsCompilation: yes
-Packaged: 2021-04-02 03:55:32 UTC; amahzarn
+Packaged: 2021-04-02 15:01:05 UTC; amahzarn
 Author: Ali Mahzarnia [aut, cre]
     (https://math.uncc.edu/directory/ali-mahzarnia),
   Jun Song [aut] (http://www.jsong.net/)

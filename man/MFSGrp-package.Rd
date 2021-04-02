@@ -162,8 +162,8 @@ tt=(1:100)/100
 trainIndex=sample(1:n, size = round(0.5*n), replace=FALSE)
 Ytrain=Y[, trainIndex, drop = FALSE ]
 Ytest=Y[, -trainIndex, drop = FALSE ]
-Xtrain=X.obs[,trainIndex,, drop=F]
-Xtest=X.obs[,-trainIndex,, drop=F]
+Xtrain=X.obs[,trainIndex,, drop=FALSE]
+Xtest=X.obs[,-trainIndex,, drop=FALSE]
 
 # The model:
 # total 35 functional predictors
@@ -190,7 +190,7 @@ part=rep(m,p) # partition
 # lasso 
 # in order to see all figures after the run, use previous plot arrow on Rstudio
 results=MFSGrp(Ytrain,Xtrain,basisno=m,tt, part=part,Xpred=Xtest,
-           Ypred=Ytest, Penalty = "glasso" , bspline=T, sixplotnum="max" , 
+           Ypred=Ytest, Penalty = "glasso" , bspline=TRUE, sixplotnum="max" , 
            lamdermax=1e-3, lamdermin = 1e-5)
 sqrt(results$MSEpredict)  # test Root MSE
 sum(results$coef==0)/m    # number of zero functional coefficients.
@@ -199,23 +199,23 @@ results$lambda # the regularized lambda
 
 # lasso with forcezro 
 results=MFSGrp(Ytrain,Xtrain,basisno=m,tt, part=part,Xpred=Xtest,
-          Ypred=Ytest, Penalty = "glasso" , bspline=T, sixplotnum="max" , 
-           lamdermax=1e-3, lamdermin = 1e-5, forcezero=T)
+          Ypred=Ytest, Penalty = "glasso" , bspline=TRUE, sixplotnum="max" , 
+           lamdermax=1e-3, lamdermin = 1e-5, forcezero=TRUE)
 sqrt(results$MSEpredict)  # test Root MSE
 sum(results$coef==0)/m    # number of zero functional coefficients.
 
 
 # lasso with forcezro and without penalizing the second derivative
 results=MFSGrp(Ytrain,Xtrain,basisno=m,tt, part=part,Xpred=Xtest,
-          Ypred=Ytest, Penalty = "glasso" , bspline=T, sixplotnum="max" , 
-           lambdaderivative=0, forcezero=T)
+          Ypred=Ytest, Penalty = "glasso" , bspline=TRUE, sixplotnum="max" , 
+           lambdaderivative=0, forcezero=TRUE)
 sqrt(results$MSEpredict)  # test Root MSE
 sum(results$coef==0)/m    # number of zero functional coefficients.
 
 
 # elastic net with differenrt settings
 results=MFSGrp(Ytrain,Xtrain,basisno=m,tt, part=part,Xpred=Xtest,Ypred=Ytest, 
-          Penalty = "gelast" , bspline=F, nlamder=15, nalpha=11, nfolder=4 )
+          Penalty = "gelast" , bspline=FALSE, nlamder=15, nalpha=11, nfolder=4 )
 sum(results$coef==0)/m
 sqrt(results$MSEpredict)
 
@@ -225,29 +225,29 @@ sqrt(results$MSEpredict)
 
 active=c(5,8,11) # the active set: of three nonzero coefficients
 results=MFSGrp(Y=Ytrain,X=Xtrain[active,,],basisno=m,tt, part=part,Xpred
-              =Xtest[active,,],Ypred=Ytest, Penalty ="OLS", bspline = T, 
+              =Xtest[active,,],Ypred=Ytest, Penalty ="OLS", bspline = TRUE, 
               sixplotnum = "max" ,lambdaderivative = NULL, lamdermax = 1e-3,
-              lamdermin=1e-5, nfolder=10, ADMM=T)
+              lamdermin=1e-5, nfolder=10, ADMM=TRUE)
 sqrt(results$MSEpredict)
 
 
 # regression with no shrinkage or sparse penalty, only with second derivative penalty
 results=MFSGrp(Ytrain,X=Xtrain,basisno=m,tt, part=part,Xpred=Xtest,Ypred=Ytest, 
-          Penalty ="OLS", bspline = T, sixplotnum = 3, ADMM=T)
+          Penalty ="OLS", bspline = TRUE, sixplotnum = 3, ADMM=TRUE)
 sqrt(results$MSEpredict)
 sum(results$coef==0)/m
 
 
 #  regression with no penalty
 results=MFSGrp(Ytrain,X=Xtrain,basisno=m,tt, part=part,Xpred=Xtest,Ypred=Ytest, 
-          Penalty ="OLS", bspline = T, sixplotnum = 2, lambdaderivative=0)
+          Penalty ="OLS", bspline = TRUE, sixplotnum = 2, lambdaderivative=0)
 sqrt(results$MSEpredict)
 sum(results$coef==0)/m
 
 
 # an ADMM example with penalty
 results=MFSGrp(Ytrain,Xtrain,basisno=m,tt, part=part,Xpred=Xtest,
-           Ypred=Ytest, Penalty = "glasso" , bspline=T, sixplotnum="max" , 
+           Ypred=Ytest, Penalty = "glasso" , bspline=TRUE, sixplotnum="max" , 
            lamdermax=1e-3, lamdermin = 1e-5, ADMM=TRUE)
 sqrt(results$MSEpredict)  # test Root MSE
 sum(results$coef==0)/m    # number of zero functional coefficients.
@@ -280,7 +280,5 @@ Fan, J and Li, R. (2001) "Variable Selection via Nonconcave Penalized Likelihood
 \author{
 Ali Mahzarnia and Jun Song\cr Maintainer: Ali Mahzarnia <amahzarn@uncc.edu>
 }
-\keyword{Scalar-on-Functional Regression}
-\keyword{Elastic net}
 
 
