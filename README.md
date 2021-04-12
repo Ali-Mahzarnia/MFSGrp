@@ -5,7 +5,7 @@ This R package runs the Group Elastic Net (including lasso, ridge, elastic net, 
 
 # Installation
 ## 1-Dependencies:
-In order to have a successful installation, make sure you have all of the required dependencies installed on R. You can install these dependencies with the R commands:
+In order to have a successful installation, make sure you have all of the required dependencies installed on R. You can install these dependencies with the R commands:  
 [Rcpp (>= 1.0.6)](https://cran.r-project.org/web/packages/Rcpp/index.html) ```install.packages("Rcpp")```  
 [RcppArmadillo (>= 0.10.2.2.0)](https://cran.r-project.org/web/packages/RcppArmadillo/index.html) ```install.packages("RcppArmadillo")```     
 [fda (>= 5.1.9)](https://cran.r-project.org/web/packages/fda/index.html) ```install.packages("fda")```    
