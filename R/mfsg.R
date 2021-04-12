@@ -69,7 +69,7 @@ get.fd = function(xraw,tt,basisname=NULL,nbasis=15,ncv=10,basis=NULL){
 #' @export
 # to test through after generating data
 # basisno=5 ; X=X.obs ; lambda=NULL; Y=Y 
-MFSGrp =function(Y,X, basisno=5 ,tt, lambda=NULL, alpha=NULL ,
+MFSGrp =function(Ytrain,Xtrain, basisno=5 ,tt, lambda=NULL, alpha=NULL ,
                 part, Xpred=NULL,Ypred=NULL, Silence=FALSE, bspline=FALSE, Penalty=NULL, 
                 lambdafactor=0.005, nfolds=5, 
                 predloss="L2", eps = 1e-08, maxit = 3e+08, nlambda=100, forcezero=FALSE, 
@@ -77,7 +77,9 @@ MFSGrp =function(Y,X, basisno=5 ,tt, lambda=NULL, alpha=NULL ,
                 nfolder=5, nalpha=9, nlamder=10, lamdermin=1e-9, lamdermax=1e-3,alphamin=0 ,alphamax=1,
                 a=3.7, ADMM=FALSE,numcores=NULL, rho=1 ){
   
+  
   loss="ls";
+  Y=Ytrain; X=Xtrain;
 #######if( ) stop("orthaganlization must be one (orth=T) if ")
     if(bspline==T) {fpca=T} else {fpca=F}
   #Y=Ytrain;X=Xtrain;basisno=m; mm =m ;tt=tt; part=part; lambda=0.6;Xpred=Xtest;Ypred=Ytest; Silence=TRUE; fpca=T; bspline=T;  Penalty="glasso"; rho=1; lambdaderivative =NULL;alpha=0.5
