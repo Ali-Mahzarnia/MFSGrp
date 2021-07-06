@@ -49,4 +49,5 @@ After installations, you can pull up the manual that includes a simulation examp
 
 
 # Main reference
-Ali Mahzarnia, Jun Song. "Multivariate functional group LASSO: functional predictor selection," Submitted for publication in 2021.
+Ali Mahzarnia, Jun Song. "Multivariate functional group sparse regression: functional predictor selection," Submitted for publication in 2021. [arXiv link](https://arxiv.org/abs/2107.02146)
+

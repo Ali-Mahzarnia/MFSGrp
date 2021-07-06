@@ -266,7 +266,7 @@ results$lambda # the regularized lambda
 remove(b5,b8,b11)
 }
 \references{
-Ali Mahzarnia, Jun Song. "Multivariate functional group LASSO: functional predictor selection," Submitted for publication in  2021.\cr URL: \url{https://github.com/Ali-Mahzarnia/MFSGrp}\cr
+Ali Mahzarnia, Jun Song. "Multivariate functional group sparse regression: functional predictor selection," Submitted for publication in  2021.\cr URL: \url{https://arxiv.org/abs/2107.02146}\cr
 
 Yang, Y. and Zou, H. (2015), "A Fast Unified Algorithm for
 Computing Group-Lasso Penalized Learning Problems," \emph{Statistics and
