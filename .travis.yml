@@ -15,7 +15,7 @@ r_packages:
   - pbmcapply
 
 r_github_packages:
-  -Ali-Mahzarnia/fGMD
+  Ali-Mahzarnia/fGMD
 
 warnings_are_errors: false
 
