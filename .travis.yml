@@ -14,7 +14,8 @@ r_packages:
   - Matrix 
   - pbmcapply
 
-r_github_packages: Ali-Mahzarnia/fGMD
+r_github_packages:
+  -Ali-Mahzarnia/fGMD
 
 warnings_are_errors: false
 
