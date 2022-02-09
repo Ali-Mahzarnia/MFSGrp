@@ -1,7 +1,4 @@
-# MFSGrp-class2
-# This is a different version of [MFSGrp](https://github.com/Ali-Mahzarnia/MFSGrp) with a different unbalanced example:
-In this version, the unbalanced case is different. The number of observed time points are different across p functional covariates while they are the same for each functional covariate across observations. In the example of [MFSGrp](https://github.com/Ali-Mahzarnia/MFSGrp), the observed data points are uneven for each observation while they are the same for the p fucntional covariates within that observation.    
-
+# MFSGrp
 This R package runs the Group Elastic Net (including lasso, ridge, elastic net, and ordinary least square) regression with scalar response values and observed functional covariates. In addition, it penalizes the curvature of the output by implementing a penalty on the second derivative of the estimated coefficient curves. One of the two algorithms of this package is ADMM (mostly developed in C++). ADMM is designed for parallel computations and is only recommended on systems equipped with many strong cores. This algorithm runs parallel on Linux, but it runs serial on Windows. The second algorithm uses the [fGMD](https://github.com/Ali-Mahzarnia/fGMD) package that is built exclusively for this package. The [fGMD](https://github.com/Ali-Mahzarnia/fGMD) package is a heavily modified version of the [gglasso](https://github.com/cran/gglasso) package. The features added to the original gglasso package are: the mixing parameter (alpha) and its net search cross-validation, the curvature penalization for functional regression and its net search cross-validation, the optimized Fortran core function to accelerate the curvature penalization updates, and the progress reports with time estimations. For this package to work, first install [fGMD](https://github.com/Ali-Mahzarnia/fGMD) as instructed below. The [fGMD](https://github.com/Ali-Mahzarnia/fGMD) package does not work independently from this package, and it does not interfere with the functions of the [gglasso](https://github.com/cran/gglasso) package due to slight name differences.
  
  
@@ -21,10 +18,10 @@ You can install `fGMD` from [GitHub](https://github.com/Ali-Mahzarnia/fGMD) with
 ```R
 install.packages("https://github.com/Ali-Mahzarnia/fGMD/archive/master.tar.gz", repos = NULL, type="source")
 ```
-## 3-Install [MFSGrp-class2](https://github.com/Ali-Mahzarnia/MFSGrp-class2):
-You can install `MFSGrp` from [GitHub](https://github.com/Ali-Mahzarnia/MFSGrp-class2) with the R command:
+## 3-Install [MFSGrp](https://github.com/Ali-Mahzarnia/MFSGrp):
+You can install `MFSGrp` from [GitHub](https://github.com/Ali-Mahzarnia/MFSGrp) with the R command:
 ```R  
-install.packages("https://github.com/Ali-Mahzarnia/MFSGrp-class2/archive/refs/heads/main.tar.gz",  repos = NULL, type="source")
+install.packages("https://github.com/Ali-Mahzarnia/MFSGrp/archive/refs/heads/main.tar.gz",  repos = NULL, type="source")
 ```
 
 
@@ -34,7 +31,7 @@ This method most likely installs the required dependencies automatically. You ca
 ``` R  
 install.packages("pacman")
 pacman::p_install_gh("Ali-Mahzarnia/fGMD")
-pacman::p_install_gh("Ali-Mahzarnia/MFSGrp-class2")
+pacman::p_install_gh("Ali-Mahzarnia/MFSGrp")
 ```
 
 ## 2-Installing from the Source files:
@@ -43,7 +40,7 @@ If the installation fails with the other methods, install the packages from the 
 # fGMD  
 install.packages("https://github.com/Ali-Mahzarnia/fGMD/raw/master/fGMD_1.0.tar.gz",  repos = NULL, type="source")
 # MFSGrp
-install.packages("https://github.com/Ali-Mahzarnia/MFSGrp-class2/raw/main/MFSGrp_1.0.tar.gz",  repos = NULL, type="source")
+install.packages("https://github.com/Ali-Mahzarnia/MFSGrp/raw/main/MFSGrp_1.0.tar.gz",  repos = NULL, type="source")
 ```
 
 
@@ -334,6 +331,8 @@ results$lambda # the regularized lambda
  
  ![Figures of the nonzero funcitonal predictors ](https://github.com/Ali-Mahzarnia/222/blob/main/readme%20pics/c2.png) ![](https://github.com/Ali-Mahzarnia/222/blob/main/readme%20pics/c3.png) ![](https://github.com/Ali-Mahzarnia/222/blob/main/readme%20pics/c4.png)
 
+# There is a different version: [MFSGrp-class2](https://github.com/Ali-Mahzarnia/MFSGrp-class2) with a different unbalanced example:
+In [MFSGrp-class2](https://github.com/Ali-Mahzarnia/MFSGrp-class2) , the number of observed time points are different across p functional covariates while they are the same for each functional covariate across observations. In the example of [MFSGrp](https://github.com/Ali-Mahzarnia/MFSGrp), the observed data points are uneven for each observation while they are the same for the p fucntional covariates within that observation.    
 
 # Main reference
 Ali Mahzarnia, Jun Song. "Multivariate functional group sparse regression: functional predictor selection," Submitted for publication in 2021. [arXiv link](https://arxiv.org/abs/2107.02146)
