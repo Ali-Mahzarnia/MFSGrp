@@ -191,95 +191,44 @@ The package manual has multiple examples about this topic.
 
 
 ```R
-# We'd generate functional data that are observed at a different number of time points.
-# For example, the first covariate is observed at  91 time points (or 91*5) and the second at 112 (or 112*5) 
+# We'd generate functional data that are observed unevenly. 
+# In this example we'd generate the data so that all funcitonal covariates of one observation
+# have the same time points. These time points are different across observations. 
+# It's possible to use the package for the case when 
+# the number of time points of each functional predictor are different as well.  
+# In our case, for example, in the first observation all p curves are observed at: 
+# tt[[1]]=0.010, 0.012, 0.026 ... while they are observed at tt[[2]]= 0.026, 0.030, 0.036,...
+rm(list=ls()) # clear all previous variables in the workspace
 p=19 # number of functional predictors for each observation
-n=300 # sample size
-nt=5*sample(80:120, p, replace=T)  # vector of number of recorded *5 and later we pick 1 of each 5
-#time points for each functional covariate that are different 
-#and here are chosen randmoly
-X=vector("list",p) # X is a list of p, each item is a mtrix of n*nt(j): X[[1]],...X[[p]]
-#(p, n, nt)
-for(j in 1:p){# first make matrices of n*nt(j) for each X[j] : j=1,...,p
-  X[[j]]=matrix(0, n, nt[j]);
-} 
-
-for(j in 1:p){# Brownian motion
-  for (i in 1:n){
-    X[[j]][i,]=as.numeric(cumsum(rnorm(nt[j],0,1))) }
-}
-```
-
-<img src="https://render.githubusercontent.com/render/math?math=X^i_j(t)"> for <img src="https://render.githubusercontent.com/render/math?math=i=1,\cdots,n">, <img src="https://render.githubusercontent.com/render/math?math=j=1,\cdots,p">, and <img src="https://render.githubusercontent.com/render/math?math=t \in \{ t_1, \cdots, t_{nt(j)} \}">. Note that <img src="https://render.githubusercontent.com/render/math?math=nt(j)\}"> depends on <img src="https://render.githubusercontent.com/render/math?math=j=1, \cdots, p">, becasue the observed time points are different from one covariate to another.
+n=100 # sample size
+nt=100 # number of recorded time points for each functional covariate
+sigma=0.01 # standard deviation of the noise term
 
 
-```R
-# true nonzero coefs: beta_1, beta_2, beta_3, and the rest are zeros
-# beta_1(t)=sin(3*pi*t), beta_2(t)=sin(5*pi*t/2) and beta_3(t)=t^2
+# simulation models true betas
 beta1 = function(t){return(sin(3*pi*t/2))}
 beta2 = function(t){return(sin(5*pi*t/2))}
 beta3=function(t){return(t^2)}
-b1=matrix(0, ncol=1, nrow=nt[1])
-b2=matrix(0, ncol=1, nrow=nt[2])
-b3=matrix(0, ncol=1, nrow=nt[3])
+ 
+# generating unbalanced simulation data 
+model.out = MFSGrp::gen.model1(p=p, n=n, nt=nt, sigma=sigma, unbalanced=TRUE)
+X = model.out$x
+tt= model.out$tt
+y = model.out$y
+Y = matrix(y, nrow=1) 
 
-# evaluate population betas on (0,1)  grids
-for (d in 1:3) {
-  temp=get(paste0("b", d, sep=""))
-  for(k in 1:nt[d]){
-    temp[k]=get(paste("beta", d, sep=""))(k/nt[d]);}
-  assign((paste0("b", d, sep="")),temp )
-}
-# evaluate the inner products of Xs and beta 5 and 8 and 11 via Reiman sum
-Xb1=matrix(0, ncol=n, nrow=1)
-Xb2=matrix(0, ncol=n, nrow=1)
-Xb3=matrix(0, ncol=n, nrow=1)
-
-for(j in 1:n){
-  Xb1[j]=(X[[1]][j,] %*%b1)/nt[1]
-  Xb2[j]=(X[[2]][j,]%*%b2)/nt[2]
-  Xb3[j]=(X[[3]][j,]%*%b3)/nt[3]
-}
-# construct Y
-Y=matrix(0, ncol=n, nrow=1)
-# standard deviation of the noise term
-sd=0.05
-# noise term 
-eps=matrix(0, ncol=n, nrow=1)
-for(n in 1:n){
-  eps[, n]=rnorm(1,0,sd)
-}
-Y=Xb1+Xb2+Xb3+eps
-# the algorithm takes care of the intercept in the prediction
-Y=Y+3; #intercept
-
-
-# make the design matrix (pick every 5 elements), here nt[j] becomes nt[j]/5
-X.obs=vector("list",p);
-for (j in 1:p) { 
-  X.obs[[j]]=X[[j]][,seq(5, nt[j], 5), drop=FALSE]; 
-  nt[j]=dim(X.obs[[j]])[2]
-}
-#X.obs = X[,,(1:100)*nt/100, drop=FALSE]
-#X.obs=X
-# observed times scaled to (0,1)
-tt=vector("list",p);
-for (j in 1:p) {
-  tt[[j]]= (1:nt[j])/nt[j]
-}
-
-
-# test and train sets (half, half)
-trainIndex=sample(1:n, size = round(0.5*n), replace=FALSE)
+#test and train sets
+trainIndex=sample(1:n, size = round(0.8*n), replace=FALSE)
 Ytrain=Y[, trainIndex, drop = FALSE ]
 Ytest=Y[, -trainIndex, drop = FALSE ]
-Xtrain=vector("list",p); Xtest=vector("list",p);
-for (j in 1:p) {
-  Xtrain[[j]]=X.obs[[j]][trainIndex,, drop=FALSE]
-  Xtest[[j]]=X.obs[[j]][-trainIndex,, drop=FALSE]
-  
-}
+Xtrain = X[trainIndex]
+Xtest =  X[-trainIndex]
+```
 
+<img src="https://render.githubusercontent.com/render/math?math=X^i_j(t)"> for <img src="https://render.githubusercontent.com/render/math?math=i=1,\cdots,n">, <img src="https://render.githubusercontent.com/render/math?math=j=1,\cdots,p">, and <img src="https://render.githubusercontent.com/render/math?math=t \in \{ t^i_1, \cdots, t^i_{nt} \}">. Note that <img src="https://render.githubusercontent.com/render/math?math=t^i_1, \cdots, t^i_{nt}\}"> depends on <img src="https://render.githubusercontent.com/render/math?math=i=1, \cdots, p">, becasue the observed time points are uneven for each fucntional covariate within an observation, and are diffrenet across observations.
+
+
+```R
 # The model:
 # total 3 functional predictors
 # beta_1(t), beta_2(t), beta_3(t) are nonzero, and the others are zero
@@ -299,35 +248,37 @@ par(mfrow=c(1,1))
 # load the library 
 library(MFSGrp) 
 
-# run
-m=17 #basisino
-part=rep(m,p) # partition
+#run
+m=21 #basisino
+part=rep(m,p) #partition
 
-
-
-# green: true beta  (only beta5, beta8, beta11 are the nonzero functions)
+# green: true beta  (only beta1, beta2, beta3 are the nonzero functions)
 # black: estimated betas
 
-# lasso 
-# in order to see all figures after the run, use the "previous plot" arrow on Rstudio
-results=MFSGrp(Ytrain,Xtrain,basisno=m,tt, part=part,Xpred=Xtest,
-               Ypred=Ytest, Penalty = "glasso" , bspline=TRUE, sixplotnum="max" , 
-               lamdermax=1e-3, lamdermin = 1e-5, unbalanced=TRUE)
+
+# Lasso net with forcezero 
+results=MFSGrp(Ytrain,Xtrain,basisno=m,tt, part=part,Xpred=Xtest, ADMM=F,
+                Ypred=Ytest, Penalty = "glasso" , bspline=TRUE, Silence=FALSE , 
+                lamdermax=1e-3, lamdermin = 1e-5, 
+                forcezero=TRUE, unbalanced=TRUE)
+sqrt(results$MSEpredict)  # test Root MSE
+sum(results$coef==0)/m    # number of zero functional coefficients
+results$lambda # the regularized lambda
 ```
-Chosen lambdader is 0.0005994843 and Maximum Estimated Time: 5.701051  seconds            
+Chosen lambdader is 1e-05 and Maximum Estimated Time: 17.18333  seconds            
 ```R 
 sqrt(results$MSEpredict)  # test Root MSE
 ```
-0.2485125
+1.511925
 ```R 
 sum(results$coef==0)/m    # number of zero functional coefficients out of 19
 ```
-16
+13
 
 ```R 
 results$lambda # the regularized lambda
 ```
- 0.4207415
+0.6049907
  
  ![Figures of the nonzero funcitonal predictors ](https://github.com/Ali-Mahzarnia/MFSGrp/blob/main/readme%20pics/c2.png) ![](https://github.com/Ali-Mahzarnia/MFSGrp/blob/main/readme%20pics/c3.png) ![](https://github.com/Ali-Mahzarnia/MFSGrp/blob/main/readme%20pics/c4.png)
 
