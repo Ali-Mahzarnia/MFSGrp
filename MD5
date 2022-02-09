@@ -1,0 +1,12 @@
+425388823f4ebec2fba5f1300aee3e10 *build/partial.rdb
+94d55d512a9ba36caa9b7df079bae19f *COPYING
+8bc298bf3027b47ef0167272dae03bdd *DESCRIPTION
+a307f1e10a6435a964b5a48c71a1fd9c *man/MFSGrp-package.Rd
+d1786a354feabed2e05613297398eb8f *NAMESPACE
+cbb4b36a04669cd6dff862c75ae9bd48 *R/mfsg.R
+e63a91554c35b7bd5c259174abcb4bd9 *R/RcppExports.R
+56da35e0d97f64cf52fd88949ae6099b *src/auxrcpp.cpp
+61059660eb073d93e00e8ee054237071 *src/Makevars
+61059660eb073d93e00e8ee054237071 *src/Makevars.win
+69c06326b9fff3c39260b71e50ef4e64 *src/RcppExports.cpp
+7c1339777bafc8dc6a720fcae2d826c5 *unbalanced example.R
