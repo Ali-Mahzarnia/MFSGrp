@@ -332,7 +332,7 @@ results$lambda # the regularized lambda
  ![Figures of the nonzero funcitonal predictors ](https://github.com/Ali-Mahzarnia/222/blob/main/readme%20pics/c2.png) ![](https://github.com/Ali-Mahzarnia/222/blob/main/readme%20pics/c3.png) ![](https://github.com/Ali-Mahzarnia/222/blob/main/readme%20pics/c4.png)
 
 # There is a different version: [MFSGrp-class2](https://github.com/Ali-Mahzarnia/MFSGrp-class2) with a different unbalanced example:
-In [MFSGrp-class2](https://github.com/Ali-Mahzarnia/MFSGrp-class2) , the number of observed time points are different across p functional covariates while they are the same for each functional covariate across observations. In the example of [MFSGrp](https://github.com/Ali-Mahzarnia/MFSGrp), the observed data points are uneven for each observation while they are the same for the p fucntional covariates within that observation.    
+In [MFSGrp-class2](https://github.com/Ali-Mahzarnia/MFSGrp-class2), for the unbalanced example,  the number of observed time points are different across p functional covariates while they are the same for each functional covariate across observations. In the example of [MFSGrp](https://github.com/Ali-Mahzarnia/MFSGrp), the observed data points are uneven for each observation while they are the same for the p fucntional covariates within that observation.    
 
 # Main reference
 Ali Mahzarnia, Jun Song. "Multivariate functional group sparse regression: functional predictor selection," Submitted for publication in 2021. [arXiv link](https://arxiv.org/abs/2107.02146)
