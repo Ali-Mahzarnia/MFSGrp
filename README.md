@@ -197,7 +197,7 @@ The package manual has multiple examples about this topic.
 # It's possible to use the package for the case when 
 # the number of time points of each functional predictor are different as well.  
 # In our case, for example, in the first observation all p curves are observed at: 
-# tt[[1]]=0.010, 0.012, 0.026 ... while they are observed at tt[[2]]= 0.026, 0.030, 0.036,...
+# tt[[1]]=0.010, 0.012, 0.026 ... while they are observed at tt[[2]]= 0.026, 0.030, 0.036,... in the second observation
 rm(list=ls()) # clear all previous variables in the workspace
 p=19 # number of functional predictors for each observation
 n=100 # sample size
@@ -225,7 +225,7 @@ Xtrain = X[trainIndex]
 Xtest =  X[-trainIndex]
 ```
 
-<img src="https://render.githubusercontent.com/render/math?math=X^i_j(t)"> for <img src="https://render.githubusercontent.com/render/math?math=i=1,\cdots,n">, <img src="https://render.githubusercontent.com/render/math?math=j=1,\cdots,p">, and <img src="https://render.githubusercontent.com/render/math?math=t \in \{ t^i_1, \cdots, t^i_{nt} \}">. Note that <img src="https://render.githubusercontent.com/render/math?math=t^i_1, \cdots, t^i_{nt}\}"> depends on <img src="https://render.githubusercontent.com/render/math?math=i=1, \cdots, p">, becasue the observed time points are uneven for each fucntional covariate within an observation, and are diffrenet across observations.
+<img src="https://render.githubusercontent.com/render/math?math=X^i_j(t)"> for <img src="https://render.githubusercontent.com/render/math?math=i=1,\cdots,n">, <img src="https://render.githubusercontent.com/render/math?math=j=1,\cdots,p">, and <img src="https://render.githubusercontent.com/render/math?math=t \in \{ t^i_1, \cdots, t^i_{nt} \}">. Note that <img src="https://render.githubusercontent.com/render/math?math=\{ t^i_1, \cdots, t^i_{nt}\}"> depends on <img src="https://render.githubusercontent.com/render/math?math=i=1, \cdots, n">, becasue the observed time points are uneven for each fucntional covariate within an observation, and are diffrenet across observations.
 
 
 ```R
