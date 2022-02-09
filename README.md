@@ -143,7 +143,7 @@ for(j in 1:9){
   for(k in 2:10)lines(tt, Xtrain[j,k,])
 }
 ```
-![Figures of the first 9 covariates](https://github.com/Ali-Mahzarnia/222/blob/main/readme%20pics/a.png)
+![Figures of the first 9 covariates](https://github.com/Ali-Mahzarnia/MFSGrp/blob/main/readme%20pics/a.png)
 
 ```R
 par(mfrow=c(1,1))
@@ -183,7 +183,7 @@ results$lambda # the regularized lambda
 ```
 0.3617951
 
-![Figures of the nonzero funcitonal predictors ](https://github.com/Ali-Mahzarnia/222/blob/main/readme%20pics/a2.png) ![](https://github.com/Ali-Mahzarnia/222/blob/main/readme%20pics/a3.png) ![](https://github.com/Ali-Mahzarnia/222/blob/main/readme%20pics/b.png)
+![Figures of the nonzero funcitonal predictors ](https://github.com/Ali-Mahzarnia/MFSGrp/blob/main/readme%20pics/a2.png) ![](https://github.com/Ali-Mahzarnia/MFSGrp/blob/main/readme%20pics/a3.png) ![](https://github.com/Ali-Mahzarnia/MFSGrp/blob/main/readme%20pics/b.png)
 
 # Unbalanced time points:
 The package manual has multiple examples about this topic.
@@ -293,7 +293,7 @@ for(j in 1:9){
 par(mfrow=c(1,1))
 ```
 
-![Figures of the first 9 covariates](https://github.com/Ali-Mahzarnia/222/blob/main/readme%20pics/c.png)
+![Figures of the first 9 covariates](https://github.com/Ali-Mahzarnia/MFSGrp/blob/main/readme%20pics/c.png)
 
 ```R
 # load the library 
@@ -329,7 +329,7 @@ results$lambda # the regularized lambda
 ```
  0.4207415
  
- ![Figures of the nonzero funcitonal predictors ](https://github.com/Ali-Mahzarnia/222/blob/main/readme%20pics/c2.png) ![](https://github.com/Ali-Mahzarnia/222/blob/main/readme%20pics/c3.png) ![](https://github.com/Ali-Mahzarnia/222/blob/main/readme%20pics/c4.png)
+ ![Figures of the nonzero funcitonal predictors ](https://github.com/Ali-Mahzarnia/MFSGrp/blob/main/readme%20pics/c2.png) ![](https://github.com/Ali-Mahzarnia/MFSGrp/blob/main/readme%20pics/c3.png) ![](https://github.com/Ali-Mahzarnia/MFSGrp/blob/main/readme%20pics/c4.png)
 
 # There is a different version: [MFSGrp-class2](https://github.com/Ali-Mahzarnia/MFSGrp-class2) with a different unbalanced example:
 In [MFSGrp-class2](https://github.com/Ali-Mahzarnia/MFSGrp-class2), for the unbalanced example,  the number of observed time points are different across p functional covariates while they are the same for each functional covariate across observations. In the example of [MFSGrp](https://github.com/Ali-Mahzarnia/MFSGrp), the observed data points are uneven for each observation while they are the same for the p fucntional covariates within that observation.    
